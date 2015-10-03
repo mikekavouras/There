@@ -8,8 +8,9 @@
 
 import UIKit
 
-protocol PullSelectorTableViewDelegate {
+@objc protocol PullSelectorTableViewDelegate: NSObjectProtocol {
     func pullSelectorTableView(tableView: PullSelectorTableView, didSelectOptionAtIndex index: Int)
+    optional func pullSelectorTableViewDidCancel(tableView: PullSelectorTableView)
 }
 
 class PullSelectorTableView: UITableView, UIGestureRecognizerDelegate {
@@ -35,12 +36,17 @@ class PullSelectorTableView: UITableView, UIGestureRecognizerDelegate {
         case .Changed:
             var point = gesture.locationInView(self)
             point.y = 0
-            if fabs(gesture.translationInView(self).x) > 10 {
+            if fabs(gesture.translationInView(self).x) > 20 {
                 selectView.selectViewAtPoint(point)
             }
         case .Ended:
             if let idx = selectView.selectedIndex {
-                pullSelectorDelegate?.pullSelectorTableView(self, didSelectOptionAtIndex: idx)
+                print(contentOffset.y + 64)
+                if fabs(contentOffset.y + 64) < 50 {
+                    pullSelectorDelegate?.pullSelectorTableViewDidCancel?(self)
+                } else {
+                    pullSelectorDelegate?.pullSelectorTableView(self, didSelectOptionAtIndex: idx)
+                }
                 selectView.reset()
             }
         default: break

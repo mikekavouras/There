@@ -15,22 +15,31 @@ struct CreateControllerType {
     static let Audio = "CreateAudioEntryViewController"
 }
 
-enum CreateControllers: Int {
-    case Text
-    case Image
-    case Video
-    case Audio
+enum CreateController {
+    case Text(String)
+    case Image(String)
+    case Video(String)
+    case Audio(String)
     
     func instance() -> CreateEntryViewController? {
-        return UIViewController.viewControllerWithIdentifier(identifier(), inStoryboard: "Main") as? CreateEntryViewController
+        return UIViewController.viewControllerWithIdentifier(identifier(), inStoryboard: storyboard()) as? CreateEntryViewController
+    }
+    
+    private func storyboard() -> String {
+        switch self {
+            case .Text(let sb): return sb
+            case .Image(let sb): return sb
+            case .Video(let sb): return sb
+            case .Audio(let sb): return sb
+        }
     }
     
     private func identifier() -> String {
         switch self {
-        case .Text: return CreateControllerType.Text
-        case .Image: return CreateControllerType.Image
-        case .Video: return CreateControllerType.Video
-        case .Audio: return CreateControllerType.Audio
+            case .Text: return CreateControllerType.Text
+            case .Image: return CreateControllerType.Image
+            case .Video: return CreateControllerType.Video
+            case .Audio: return CreateControllerType.Audio
         }
     }
 }
