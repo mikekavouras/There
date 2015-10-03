@@ -12,6 +12,15 @@ import UIKit
 class PullToSelectView: UIView {
     
     var selectedIndex: Int?
+    var numberOfSelections = 1
+    lazy var selectionWidth: CGFloat = {
+        return self.frame.size.width / CGFloat(self.numberOfSelections)
+    }()
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        reset()
+    }
     
     func reset() {
         for subview in subviews {
@@ -23,7 +32,7 @@ class PullToSelectView: UIView {
         for subview in subviews {
             if subview.frame.contains(point) {
                 subview.backgroundColor = subview.backgroundColor?.colorWithAlphaComponent(1.0)
-                selectedIndex = subviews.indexOf(subview)
+                selectedIndex = Int(floor(point.x / selectionWidth))
             } else {
                 subview.backgroundColor = subview.backgroundColor?.colorWithAlphaComponent(0.2)
             }

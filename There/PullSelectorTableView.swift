@@ -18,7 +18,9 @@ class PullSelectorTableView: UITableView, UIGestureRecognizerDelegate {
     var pullSelectorDelegate: PullSelectorTableViewDelegate?
     
     lazy var selectView: PullToSelectView = {
-        return NSBundle.mainBundle().loadNibNamed("PullToSelectView", owner: self, options: nil).first as! PullToSelectView
+        let v = NSBundle.mainBundle().loadNibNamed("PullToSelectView", owner: self, options: nil).first as! PullToSelectView
+        v.numberOfSelections = 5
+        return v
     }()
 
     override func awakeFromNib() {
@@ -42,7 +44,7 @@ class PullSelectorTableView: UITableView, UIGestureRecognizerDelegate {
         case .Ended:
             if let idx = selectView.selectedIndex {
                 print(contentOffset.y + 64)
-                if fabs(contentOffset.y + 64) < 50 {
+                if contentOffset.y + 64 > -50 {
                     pullSelectorDelegate?.pullSelectorTableViewDidCancel?(self)
                 } else {
                     pullSelectorDelegate?.pullSelectorTableView(self, didSelectOptionAtIndex: idx)

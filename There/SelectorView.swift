@@ -14,8 +14,6 @@ struct KVOPaths {
 
 class SelectorView: UIView {
  
-    @IBOutlet var label: UILabel!
-    
     deinit {
         removeObserver(self, forKeyPath: KVOPaths.LayerBounds)
     }
@@ -29,7 +27,7 @@ class SelectorView: UIView {
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if let _ = object as? SelectorView,
             _ = keyPath {
-                label.alpha = (frame.size.height / 50) - 0.5
+//                circleView.alpha = (frame.size.height / 50) - 0.5
                 return
         }
         super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)

@@ -15,6 +15,8 @@ class MainStreamViewController: UIViewController, PullSelectorTableViewDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.pullSelectorDelegate = self
+        
+        tableView.contentOffset = CGPointMake(0, 20)
     }
     
     // MARK: Pull selector delegate
@@ -22,10 +24,10 @@ class MainStreamViewController: UIViewController, PullSelectorTableViewDelegate 
     func pullSelectorTableView(tableView: PullSelectorTableView, didSelectOptionAtIndex index: Int) {
         var viewController: CreateEntryViewController?
         switch index {
-            case 0: viewController = CreateController.Text(Storyboard.Main).instance()
-            case 1: viewController = CreateController.Image(Storyboard.Main).instance()
-            case 2: viewController = CreateController.Video(Storyboard.Main).instance()
-            case 3: viewController = CreateController.Audio(Storyboard.Main).instance()
+            case 1: viewController = CreateController.Text(Storyboard.Main).instance()
+            case 2: viewController = CreateController.Image(Storyboard.Main).instance()
+            case 3: viewController = CreateController.Video(Storyboard.Main).instance()
+            case 4: viewController = CreateController.Audio(Storyboard.Main).instance()
             default: break;
         }
         
@@ -34,4 +36,5 @@ class MainStreamViewController: UIViewController, PullSelectorTableViewDelegate 
             presentViewController(navController, animated: true, completion: nil)
         }
     }
+
 }
