@@ -10,25 +10,28 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="106"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zR3-pV-gP9">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zR3-pV-gP9" customClass="SelectorView" customModule="There" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="150" height="106"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUs-tl-qos">
                             <rect key="frame" x="54" y="42" width="42" height="21"/>
                             <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <animations/>
-                    <color key="backgroundColor" red="0.99215686270000003" green="0.92383863259999999" blue="0.97352731039999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.99215686270000003" green="0.68127895613632006" blue="0.92335671113555418" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="wUs-tl-qos" firstAttribute="centerY" secondItem="zR3-pV-gP9" secondAttribute="centerY" id="1C7-p9-i5p"/>
                         <constraint firstItem="wUs-tl-qos" firstAttribute="centerX" secondItem="zR3-pV-gP9" secondAttribute="centerX" id="Mie-Ii-pfk"/>
                     </constraints>
+                    <connections>
+                        <outlet property="label" destination="wUs-tl-qos" id="l7Z-PH-Z5N"/>
+                    </connections>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G5C-2M-wEU">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G5C-2M-wEU" customClass="SelectorView" customModule="There" customModuleProvider="target">
                     <rect key="frame" x="150" y="0.0" width="150" height="106"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhK-No-c5z">
@@ -40,47 +43,56 @@
                         </label>
                     </subviews>
                     <animations/>
-                    <color key="backgroundColor" red="1" green="0.96412953283183422" blue="0.81572703472208408" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="1" green="0.94205985062291764" blue="0.40830740600447957" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="fhK-No-c5z" firstAttribute="centerX" secondItem="G5C-2M-wEU" secondAttribute="centerX" id="Tq8-1J-OTw"/>
                         <constraint firstItem="fhK-No-c5z" firstAttribute="centerY" secondItem="G5C-2M-wEU" secondAttribute="centerY" id="g03-oz-kPb"/>
                     </constraints>
+                    <connections>
+                        <outlet property="label" destination="fhK-No-c5z" id="eTA-Mf-qHI"/>
+                    </connections>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hzy-rI-frF">
-                    <rect key="frame" x="300" y="0.0" width="150" height="106"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awY-Px-I19">
-                            <rect key="frame" x="54" y="42" width="42" height="21"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <animations/>
-                    <color key="backgroundColor" red="0.88027384776309769" green="1" blue="0.90715764808309496" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstItem="awY-Px-I19" firstAttribute="centerX" secondItem="Hzy-rI-frF" secondAttribute="centerX" id="23Q-nk-ZxY"/>
-                        <constraint firstItem="awY-Px-I19" firstAttribute="centerY" secondItem="Hzy-rI-frF" secondAttribute="centerY" id="Sr6-Qy-LAt"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4D-2n-YMt">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4D-2n-YMt" customClass="SelectorView" customModule="There" customModuleProvider="target">
                     <rect key="frame" x="450" y="0.0" width="150" height="106"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGz-Lk-hik">
                             <rect key="frame" x="54" y="42" width="42" height="21"/>
                             <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <animations/>
-                    <color key="backgroundColor" red="0.76555975763339756" green="0.90460911051694548" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.49541099605321448" green="0.80691561360644093" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="FGz-Lk-hik" firstAttribute="centerY" secondItem="g4D-2n-YMt" secondAttribute="centerY" id="4oe-x9-PiK"/>
                         <constraint firstItem="FGz-Lk-hik" firstAttribute="centerX" secondItem="g4D-2n-YMt" secondAttribute="centerX" id="cU1-8m-byt"/>
                     </constraints>
+                    <connections>
+                        <outlet property="label" destination="FGz-Lk-hik" id="jLc-iT-iXt"/>
+                    </connections>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hzy-rI-frF" customClass="SelectorView" customModule="There" customModuleProvider="target">
+                    <rect key="frame" x="300" y="0.0" width="150" height="106"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awY-Px-I19">
+                            <rect key="frame" x="54" y="42" width="42" height="21"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" red="0.51430499078202851" green="1" blue="0.57036531275574021" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="awY-Px-I19" firstAttribute="centerX" secondItem="Hzy-rI-frF" secondAttribute="centerX" id="23Q-nk-ZxY"/>
+                        <constraint firstItem="awY-Px-I19" firstAttribute="centerY" secondItem="Hzy-rI-frF" secondAttribute="centerY" id="Sr6-Qy-LAt"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="label" destination="awY-Px-I19" id="O8i-J1-bUm"/>
+                    </connections>
                 </view>
             </subviews>
             <animations/>

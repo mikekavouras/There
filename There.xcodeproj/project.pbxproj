@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		050821EE9423A61B9ABCBF27 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308076A500266620036212D4 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8D12807A1BBF540200615BEA /* CreateEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1280791BBF540200615BEA /* CreateEntryViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		8D12807C1BBF541300615BEA /* CreateAudioEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12807B1BBF541300615BEA /* CreateAudioEntryViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		8D12807E1BBF542B00615BEA /* CreateVideoEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12807D1BBF542B00615BEA /* CreateVideoEntryViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		8D1280801BBF543800615BEA /* CreateImageEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12807F1BBF543800615BEA /* CreateImageEntryViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		8D1280821BBF544100615BEA /* CreateTextEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1280811BBF544100615BEA /* CreateTextEntryViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		8D1280841BBF552B00615BEA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1280831BBF552B00615BEA /* ViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		8D1280861BBF569900615BEA /* CreateControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1280851BBF569900615BEA /* CreateControllers.swift */; settings = {ASSET_TAGS = (); }; };
+		8D3BDDF81BBF451900589F39 /* SelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3BDDF71BBF451900589F39 /* SelectorView.swift */; settings = {ASSET_TAGS = (); }; };
 		8DA044761BBF0D68007AF00A /* PullSelectorTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA044751BBF0D68007AF00A /* PullSelectorTableView.swift */; settings = {ASSET_TAGS = (); }; };
 		8DFD90C11BBE35B500238DCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD90C01BBE35B500238DCD /* AppDelegate.swift */; };
 		8DFD90C61BBE35B500238DCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DFD90C41BBE35B500238DCD /* Main.storyboard */; };
@@ -51,6 +59,14 @@
 
 /* Begin PBXFileReference section */
 		308076A500266620036212D4 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1280791BBF540200615BEA /* CreateEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEntryViewController.swift; sourceTree = "<group>"; };
+		8D12807B1BBF541300615BEA /* CreateAudioEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAudioEntryViewController.swift; sourceTree = "<group>"; };
+		8D12807D1BBF542B00615BEA /* CreateVideoEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateVideoEntryViewController.swift; sourceTree = "<group>"; };
+		8D12807F1BBF543800615BEA /* CreateImageEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateImageEntryViewController.swift; sourceTree = "<group>"; };
+		8D1280811BBF544100615BEA /* CreateTextEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTextEntryViewController.swift; sourceTree = "<group>"; };
+		8D1280831BBF552B00615BEA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8D1280851BBF569900615BEA /* CreateControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateControllers.swift; sourceTree = "<group>"; };
+		8D3BDDF71BBF451900589F39 /* SelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectorView.swift; sourceTree = "<group>"; };
 		8DA044751BBF0D68007AF00A /* PullSelectorTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullSelectorTableView.swift; sourceTree = "<group>"; };
 		8DFD90BD1BBE35B500238DCD /* There.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = There.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFD90C01BBE35B500238DCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +153,54 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8D1280751BBF53CD00615BEA /* Pull to Select */ = {
+			isa = PBXGroup;
+			children = (
+				8DA044751BBF0D68007AF00A /* PullSelectorTableView.swift */,
+				8D3BDDF71BBF451900589F39 /* SelectorView.swift */,
+				8DFD910A1BBE41DD00238DCD /* PullToSelectView.swift */,
+				8DFD910C1BBE41E800238DCD /* PullToSelectView.xib */,
+			);
+			name = "Pull to Select";
+			sourceTree = "<group>";
+		};
+		8D1280761BBF53E200615BEA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8DFD91061BBE3CAE00238DCD /* Entry.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		8D1280771BBF53E700615BEA /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				8D1280781BBF53ED00615BEA /* Stream */,
+				8D1280871BBF56A500615BEA /* Create */,
+			);
+			name = Modules;
+			sourceTree = "<group>";
+		};
+		8D1280781BBF53ED00615BEA /* Stream */ = {
+			isa = PBXGroup;
+			children = (
+				8DFD910E1BBE447C00238DCD /* MainStreamViewController.swift */,
+			);
+			name = Stream;
+			sourceTree = "<group>";
+		};
+		8D1280871BBF56A500615BEA /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				8D1280791BBF540200615BEA /* CreateEntryViewController.swift */,
+				8D12807B1BBF541300615BEA /* CreateAudioEntryViewController.swift */,
+				8D12807D1BBF542B00615BEA /* CreateVideoEntryViewController.swift */,
+				8D12807F1BBF543800615BEA /* CreateImageEntryViewController.swift */,
+				8D1280811BBF544100615BEA /* CreateTextEntryViewController.swift */,
+			);
+			name = Create;
+			sourceTree = "<group>";
+		};
 		8DFD90B41BBE35B500238DCD = {
 			isa = PBXGroup;
 			children = (
@@ -163,12 +227,12 @@
 			isa = PBXGroup;
 			children = (
 				8DFD90C01BBE35B500238DCD /* AppDelegate.swift */,
-				8DFD91061BBE3CAE00238DCD /* Entry.swift */,
-				8DFD910E1BBE447C00238DCD /* MainStreamViewController.swift */,
-				8DA044751BBF0D68007AF00A /* PullSelectorTableView.swift */,
+				8D1280831BBF552B00615BEA /* ViewController.swift */,
+				8D1280851BBF569900615BEA /* CreateControllers.swift */,
+				8D1280761BBF53E200615BEA /* Model */,
+				8D1280771BBF53E700615BEA /* Modules */,
+				8D1280751BBF53CD00615BEA /* Pull to Select */,
 				8DFD90C41BBE35B500238DCD /* Main.storyboard */,
-				8DFD910A1BBE41DD00238DCD /* PullToSelectView.swift */,
-				8DFD910C1BBE41E800238DCD /* PullToSelectView.xib */,
 				8DFD90CA1BBE35B500238DCD /* Assets.xcassets */,
 				8DFD90CC1BBE35B500238DCD /* LaunchScreen.storyboard */,
 				8DFD90CF1BBE35B500238DCD /* Info.plist */,
@@ -387,11 +451,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DFD91071BBE3CAE00238DCD /* Entry.swift in Sources */,
+				8D3BDDF81BBF451900589F39 /* SelectorView.swift in Sources */,
 				8DFD910F1BBE447C00238DCD /* MainStreamViewController.swift in Sources */,
 				8DA044761BBF0D68007AF00A /* PullSelectorTableView.swift in Sources */,
+				8D1280821BBF544100615BEA /* CreateTextEntryViewController.swift in Sources */,
 				8DFD90C91BBE35B500238DCD /* There.xcdatamodeld in Sources */,
+				8D1280801BBF543800615BEA /* CreateImageEntryViewController.swift in Sources */,
 				8DFD910B1BBE41DD00238DCD /* PullToSelectView.swift in Sources */,
+				8D1280841BBF552B00615BEA /* ViewController.swift in Sources */,
 				8DFD90C11BBE35B500238DCD /* AppDelegate.swift in Sources */,
+				8D12807E1BBF542B00615BEA /* CreateVideoEntryViewController.swift in Sources */,
+				8D1280861BBF569900615BEA /* CreateControllers.swift in Sources */,
+				8D12807A1BBF540200615BEA /* CreateEntryViewController.swift in Sources */,
+				8D12807C1BBF541300615BEA /* CreateAudioEntryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

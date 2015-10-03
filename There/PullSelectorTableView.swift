@@ -15,7 +15,6 @@ protocol PullSelectorTableViewDelegate {
 class PullSelectorTableView: UITableView, UIGestureRecognizerDelegate {
     
     var pullSelectorDelegate: PullSelectorTableViewDelegate?
-    var offsetLeft = 0
     
     lazy var selectView: PullToSelectView = {
         return NSBundle.mainBundle().loadNibNamed("PullToSelectView", owner: self, options: nil).first as! PullToSelectView
@@ -51,7 +50,7 @@ class PullSelectorTableView: UITableView, UIGestureRecognizerDelegate {
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if let _ = object as? PullSelectorTableView,
             _ = keyPath {
-                let offsetY = contentOffset.y
+                let offsetY = contentOffset.y + 64
                 selectView.frame.origin.y = offsetY
                 selectView.frame.size.height = -offsetY
                 return

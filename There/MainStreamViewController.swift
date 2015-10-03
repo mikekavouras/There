@@ -21,6 +21,9 @@ class MainStreamViewController: UIViewController, PullSelectorTableViewDelegate 
     // MARK: Pull selector delegate
     
     func pullSelectorTableView(tableView: PullSelectorTableView, didSelectOptionAtIndex index: Int) {
-        print(index)
+        if let viewController = CreateControllers(rawValue: index)?.instance() {
+            let navController = UINavigationController(rootViewController: viewController)
+            presentViewController(navController, animated: true, completion: nil)
+        }
     }
 }

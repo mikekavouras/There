@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="nPE-rl-Nl9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="h3D-zM-daN">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="xwI-sM-XDi">
+            <objects>
+                <navigationController id="h3D-zM-daN" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Md8-2w-WR6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="nPE-rl-Nl9" kind="relationship" relationship="rootViewController" id="NRh-3R-KMG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9bk-pT-iGa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="552" y="-400"/>
+        </scene>
         <!--Main Stream View Controller-->
         <scene sceneID="ZXa-pe-8uR">
             <objects>
@@ -26,18 +44,103 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="bDy-1A-uzu" secondAttribute="trailing" id="2ib-tP-LoB"/>
+                            <constraint firstItem="bDy-1A-uzu" firstAttribute="top" secondItem="1ST-ip-K0c" secondAttribute="bottom" id="4Ih-6U-MBW"/>
                             <constraint firstItem="8p9-gp-GR9" firstAttribute="top" secondItem="bDy-1A-uzu" secondAttribute="bottom" id="GJa-gY-1dj"/>
                             <constraint firstItem="bDy-1A-uzu" firstAttribute="top" secondItem="rU5-6X-R6w" secondAttribute="top" id="gt4-Ry-wN4"/>
                             <constraint firstItem="bDy-1A-uzu" firstAttribute="leading" secondItem="rU5-6X-R6w" secondAttribute="leading" id="lkD-Ed-Ba5"/>
+                            <constraint firstItem="bDy-1A-uzu" firstAttribute="top" secondItem="rU5-6X-R6w" secondAttribute="topMargin" id="twu-BG-NM2"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="4Ih-6U-MBW"/>
+                                <exclude reference="gt4-Ry-wN4"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="tXv-Uv-Mnw"/>
                     <connections>
                         <outlet property="tableView" destination="bDy-1A-uzu" id="Nbv-mm-cA3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n6D-yL-Fhh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="712" y="-81"/>
+            <point key="canvasLocation" x="1238" y="-400"/>
+        </scene>
+        <!--Create Audio Entry View Controller-->
+        <scene sceneID="c6j-uE-A7T">
+            <objects>
+                <viewController storyboardIdentifier="CreateAudioEntryViewController" id="CUZ-rV-hpE" customClass="CreateAudioEntryViewController" customModule="There" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iMR-cA-QvY"/>
+                        <viewControllerLayoutGuide type="bottom" id="ods-n8-Wzg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="u8a-I1-9HN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GLp-z6-TQw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2088" y="-730"/>
+        </scene>
+        <!--Create Video Entry View Controller-->
+        <scene sceneID="8Fh-pl-mE8">
+            <objects>
+                <viewController storyboardIdentifier="CreateVideoEntryViewController" id="Jhm-DZ-Yt8" customClass="CreateVideoEntryViewController" customModule="There" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="v3t-w8-MlG"/>
+                        <viewControllerLayoutGuide type="bottom" id="tD5-Ny-lCk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IfO-H6-PYW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h00-TJ-6Xz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2740" y="-759"/>
+        </scene>
+        <!--Create Image Entry View Controller-->
+        <scene sceneID="cRo-cG-ul4">
+            <objects>
+                <viewController storyboardIdentifier="CreateImageEntryViewController" id="IAd-aK-9Vt" customClass="CreateImageEntryViewController" customModule="There" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jxj-c8-eSW"/>
+                        <viewControllerLayoutGuide type="bottom" id="zZg-hH-YIh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="L6Q-Xi-Lvx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B49-Cf-QaP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2872" y="-20"/>
+        </scene>
+        <!--Create Text Entry View Controller-->
+        <scene sceneID="Zn9-a9-xr7">
+            <objects>
+                <viewController storyboardIdentifier="CreateTextEntryViewController" id="qZf-AN-naf" customClass="CreateTextEntryViewController" customModule="There" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZXB-Xs-NIx"/>
+                        <viewControllerLayoutGuide type="bottom" id="278-ht-iqE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qz6-NF-e6M">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="clb-3v-gXq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2138" y="-38"/>
         </scene>
     </scenes>
 </document>
