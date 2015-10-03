@@ -23,15 +23,26 @@ class MainStreamViewController: UIViewController, PullSelectorTableViewDelegate 
     
     func pullSelectorTableView(tableView: PullSelectorTableView, didSelectOptionAtIndex index: Int) {
         var viewController: CreateEntryViewController?
+        var entry: Entry?
+        
         switch index {
-            case 1: viewController = CreateController.Text(Storyboard.Main).instance()
-            case 2: viewController = CreateController.Image(Storyboard.Main).instance()
-            case 3: viewController = CreateController.Video(Storyboard.Main).instance()
-            case 4: viewController = CreateController.Audio(Storyboard.Main).instance()
+            case 1:
+                viewController = CreateController.Text(Storyboard.Main).instance()
+                entry = TextEntry()
+            case 2:
+                viewController = CreateController.Image(Storyboard.Main).instance()
+                entry = ImageEntry()
+            case 3:
+                viewController = CreateController.Video(Storyboard.Main).instance()
+                entry = VideoEntry()
+            case 4:
+                viewController = CreateController.Audio(Storyboard.Main).instance()
+                entry = AudioEntry()
             default: break;
         }
         
         if let viewController = viewController {
+            viewController.entry = entry
             let navController = UINavigationController(rootViewController: viewController)
             presentViewController(navController, animated: true, completion: nil)
         }

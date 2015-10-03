@@ -14,6 +14,7 @@ class Entry : PFObject, PFSubclassing {
     @NSManaged var location: PFGeoPoint?
     @NSManaged var type: String
     @NSManaged var media: PFFile?
+    @NSManaged var caption: String
     
     class func parseClassName() -> String {
         return "Entry"

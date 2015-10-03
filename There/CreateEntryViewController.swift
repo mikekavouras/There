@@ -9,6 +9,8 @@
 import UIKit
 
 class CreateEntryViewController: UIViewController {
+    
+    var entry: Entry!
 
     override func viewDidLoad() {
         super.viewDidLoad()
