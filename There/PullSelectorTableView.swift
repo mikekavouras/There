@@ -36,20 +36,15 @@ class PullSelectorTableView: UITableView, UIGestureRecognizerDelegate {
     @objc private func panning(gesture: UIPanGestureRecognizer) {
         switch gesture.state {
         case .Changed:
-            var point = gesture.locationInView(self)
-            point.y = 0
-            if fabs(gesture.translationInView(self).x) > 20 {
-                selectView.selectViewAtPoint(point)
-            }
+            let point = gesture.locationInView(self)
+            selectView.selectViewForPoint(point)
         case .Ended:
             if let idx = selectView.selectedIndex {
-                print(contentOffset.y + 64)
                 if contentOffset.y + 64 > -50 {
                     pullSelectorDelegate?.pullSelectorTableViewDidCancel?(self)
                 } else {
                     pullSelectorDelegate?.pullSelectorTableView(self, didSelectOptionAtIndex: idx)
                 }
-                selectView.reset()
             }
         default: break
         }

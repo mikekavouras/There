@@ -10,4 +10,8 @@ import Foundation
 
 struct Storyboard {
     static let Main = "Main"
+    static let Text = "TextFlow"
+    static let Image = "ImageFlow"
+    static let Video = "VideoFlow"
+    static let Audio = "AudioFlow"
 }

@@ -13,7 +13,8 @@ class CreateImageEntryViewController: CreateEntryViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Image"
+        entry.typeMapped = .Image
+        navigationItem.title = entry.type.capitalizedString
     }
 
 }

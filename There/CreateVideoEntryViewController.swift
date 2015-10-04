@@ -13,7 +13,8 @@ class CreateVideoEntryViewController: CreateEntryViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Video"
+        entry.typeMapped = .Video
+        navigationItem.title = entry.type.capitalizedString
     }
 
 }

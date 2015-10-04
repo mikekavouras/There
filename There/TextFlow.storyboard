@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Create Text Entry View Controller-->
+        <scene sceneID="aCB-tG-QaI">
+            <objects>
+                <viewController storyboardIdentifier="CreateTextEntryViewController" id="Sid-JC-sS4" customClass="CreateTextEntryViewController" customModule="There" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HxM-Yn-ad1"/>
+                        <viewControllerLayoutGuide type="bottom" id="99y-Po-ixB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nrh-ft-C7u">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="v6h-5Y-4Fm">
+                                <rect key="frame" x="0.0" y="5" width="600" height="551"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJr-cb-SHS">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.66666666669999997" green="0.13312415529999999" blue="0.16397444480000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Tzx-7H-c8I"/>
+                                </constraints>
+                                <state key="normal" title="Do it, please">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="createEntryButtonTapped:" destination="Sid-JC-sS4" eventType="touchUpInside" id="nXW-HX-fAb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="v6h-5Y-4Fm" secondAttribute="trailing" id="6hd-5a-S6Z"/>
+                            <constraint firstItem="v6h-5Y-4Fm" firstAttribute="top" secondItem="nrh-ft-C7u" secondAttribute="topMargin" id="LZm-zW-jiF"/>
+                            <constraint firstItem="99y-Po-ixB" firstAttribute="top" secondItem="TJr-cb-SHS" secondAttribute="bottom" id="Yz5-3r-82u"/>
+                            <constraint firstItem="TJr-cb-SHS" firstAttribute="leading" secondItem="nrh-ft-C7u" secondAttribute="leading" id="b2X-Ex-A1V"/>
+                            <constraint firstAttribute="trailing" secondItem="TJr-cb-SHS" secondAttribute="trailing" id="dDs-zb-Akw"/>
+                            <constraint firstItem="TJr-cb-SHS" firstAttribute="top" secondItem="v6h-5Y-4Fm" secondAttribute="bottom" id="hMj-qB-kgG"/>
+                            <constraint firstItem="v6h-5Y-4Fm" firstAttribute="top" secondItem="HxM-Yn-ad1" secondAttribute="bottom" id="khv-NF-sAv"/>
+                            <constraint firstItem="v6h-5Y-4Fm" firstAttribute="leading" secondItem="nrh-ft-C7u" secondAttribute="leading" id="ttf-cR-IwN"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="khv-NF-sAv"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="buttonBottomConstraint" destination="Yz5-3r-82u" id="kWc-ff-Vpl"/>
+                        <outlet property="textView" destination="v6h-5Y-4Fm" id="2dU-vq-iue"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mEg-ZC-oqi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2088" y="126"/>
+        </scene>
+    </scenes>
+</document>

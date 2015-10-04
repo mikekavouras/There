@@ -13,6 +13,13 @@ struct KVOPaths {
 }
 
 class SelectorView: UIView {
+    
+    var selected = false {
+        didSet {
+            let alpha: CGFloat = selected ? 1.0 : 0.2
+            backgroundColor = backgroundColor?.colorWithAlphaComponent(alpha)
+        }
+    }
  
     deinit {
         removeObserver(self, forKeyPath: KVOPaths.LayerBounds)

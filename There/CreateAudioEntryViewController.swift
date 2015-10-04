@@ -13,7 +13,8 @@ class CreateAudioEntryViewController: CreateEntryViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Audio"
+        entry.typeMapped = .Audio
+        navigationItem.title = entry.type.capitalizedString
     }
 
 }

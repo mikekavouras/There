@@ -10,7 +10,7 @@ import UIKit
 
 class CreateEntryViewController: UIViewController {
     
-    var entry: Entry!
+    var entry: Entry = Entry()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,5 +21,9 @@ class CreateEntryViewController: UIViewController {
     @objc private func dismiss() {
         dismissViewControllerAnimated(true, completion: nil)
     }
-
+    
+    @IBAction func createEntryButtonTapped(sender: AnyObject) {
+        entry.saveInBackground()
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }
