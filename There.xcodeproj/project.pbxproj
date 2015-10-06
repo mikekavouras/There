@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		050821EE9423A61B9ABCBF27 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308076A500266620036212D4 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8D1277E51BC0B73E00E0867D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1277E41BC0B73E00E0867D /* LocationManager.swift */; };
 		8D12807A1BBF540200615BEA /* CreateEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1280791BBF540200615BEA /* CreateEntryViewController.swift */; };
 		8D12807C1BBF541300615BEA /* CreateAudioEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12807B1BBF541300615BEA /* CreateAudioEntryViewController.swift */; };
 		8D12807E1BBF542B00615BEA /* CreateVideoEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D12807D1BBF542B00615BEA /* CreateVideoEntryViewController.swift */; };
@@ -24,7 +25,6 @@
 		8DA044761BBF0D68007AF00A /* PullSelectorTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA044751BBF0D68007AF00A /* PullSelectorTableView.swift */; };
 		8DFD90C11BBE35B500238DCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD90C01BBE35B500238DCD /* AppDelegate.swift */; };
 		8DFD90C61BBE35B500238DCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DFD90C41BBE35B500238DCD /* Main.storyboard */; };
-		8DFD90C91BBE35B500238DCD /* There.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD90C71BBE35B500238DCD /* There.xcdatamodeld */; };
 		8DFD90CB1BBE35B500238DCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DFD90CA1BBE35B500238DCD /* Assets.xcassets */; };
 		8DFD90CE1BBE35B500238DCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DFD90CC1BBE35B500238DCD /* LaunchScreen.storyboard */; };
 		8DFD90D91BBE35B500238DCD /* ThereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD90D81BBE35B500238DCD /* ThereTests.swift */; };
@@ -64,6 +64,7 @@
 
 /* Begin PBXFileReference section */
 		308076A500266620036212D4 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1277E41BC0B73E00E0867D /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		8D1280791BBF540200615BEA /* CreateEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEntryViewController.swift; sourceTree = "<group>"; };
 		8D12807B1BBF541300615BEA /* CreateAudioEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAudioEntryViewController.swift; sourceTree = "<group>"; };
 		8D12807D1BBF542B00615BEA /* CreateVideoEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateVideoEntryViewController.swift; sourceTree = "<group>"; };
@@ -81,7 +82,6 @@
 		8DFD90BD1BBE35B500238DCD /* There.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = There.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFD90C01BBE35B500238DCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DFD90C51BBE35B500238DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8DFD90C81BBE35B500238DCD /* There.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = There.xcdatamodel; sourceTree = "<group>"; };
 		8DFD90CA1BBE35B500238DCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8DFD90CD1BBE35B500238DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8DFD90CF1BBE35B500238DCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -178,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				8DFD91061BBE3CAE00238DCD /* Entry.swift */,
+				8D1277E41BC0B73E00E0867D /* LocationManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -251,7 +252,6 @@
 				8DFD90CA1BBE35B500238DCD /* Assets.xcassets */,
 				8DFD90CC1BBE35B500238DCD /* LaunchScreen.storyboard */,
 				8DFD90CF1BBE35B500238DCD /* Info.plist */,
-				8DFD90C71BBE35B500238DCD /* There.xcdatamodeld */,
 			);
 			path = There;
 			sourceTree = "<group>";
@@ -473,8 +473,8 @@
 				8D3BDDF81BBF451900589F39 /* SelectorView.swift in Sources */,
 				8DFD910F1BBE447C00238DCD /* MainStreamViewController.swift in Sources */,
 				8DA044761BBF0D68007AF00A /* PullSelectorTableView.swift in Sources */,
+				8D1277E51BC0B73E00E0867D /* LocationManager.swift in Sources */,
 				8D1280821BBF544100615BEA /* CreateTextEntryViewController.swift in Sources */,
-				8DFD90C91BBE35B500238DCD /* There.xcdatamodeld in Sources */,
 				8D1280801BBF543800615BEA /* CreateImageEntryViewController.swift in Sources */,
 				8DFD910B1BBE41DD00238DCD /* PullToSelectView.swift in Sources */,
 				8D1280841BBF552B00615BEA /* ViewController.swift in Sources */,
@@ -731,19 +731,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		8DFD90C71BBE35B500238DCD /* There.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				8DFD90C81BBE35B500238DCD /* There.xcdatamodel */,
-			);
-			currentVersion = 8DFD90C81BBE35B500238DCD /* There.xcdatamodel */;
-			path = There.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 8DFD90B51BBE35B500238DCD /* Project object */;
 }
