@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9052" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="h3D-zM-daN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="h3D-zM-daN">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9040"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -34,11 +34,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bDy-1A-uzu" customClass="PullSelectorTableView" customModule="There" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bDy-1A-uzu">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="77q-qZ-ozf">
+                                <rect key="frame" x="265" y="536" width="70" height="44"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="EPp-c7-VPk"/>
+                                    <constraint firstAttribute="width" constant="70" id="eFi-E8-m70"/>
+                                </constraints>
+                                <state key="normal" title="Add"/>
+                                <connections>
+                                    <segue destination="PrW-67-TWK" kind="presentation" id="lLS-YY-V17"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -46,7 +58,9 @@
                             <constraint firstAttribute="trailing" secondItem="bDy-1A-uzu" secondAttribute="trailing" id="2ib-tP-LoB"/>
                             <constraint firstItem="bDy-1A-uzu" firstAttribute="top" secondItem="1ST-ip-K0c" secondAttribute="bottom" id="4Ih-6U-MBW"/>
                             <constraint firstItem="8p9-gp-GR9" firstAttribute="top" secondItem="bDy-1A-uzu" secondAttribute="bottom" id="GJa-gY-1dj"/>
+                            <constraint firstItem="77q-qZ-ozf" firstAttribute="centerX" secondItem="rU5-6X-R6w" secondAttribute="centerX" id="N44-zc-Zni"/>
                             <constraint firstItem="bDy-1A-uzu" firstAttribute="top" secondItem="rU5-6X-R6w" secondAttribute="top" id="gt4-Ry-wN4"/>
+                            <constraint firstItem="8p9-gp-GR9" firstAttribute="top" secondItem="77q-qZ-ozf" secondAttribute="bottom" constant="20" id="iaI-A0-f30"/>
                             <constraint firstItem="bDy-1A-uzu" firstAttribute="leading" secondItem="rU5-6X-R6w" secondAttribute="leading" id="lkD-Ed-Ba5"/>
                             <constraint firstItem="bDy-1A-uzu" firstAttribute="top" secondItem="rU5-6X-R6w" secondAttribute="topMargin" id="twu-BG-NM2"/>
                         </constraints>
@@ -66,5 +80,219 @@
             </objects>
             <point key="canvasLocation" x="1238" y="-400"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Y7S-NK-ZCS">
+            <objects>
+                <navigationController id="PrW-67-TWK" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lHH-tU-ULL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="PZA-NQ-LBx" kind="relationship" relationship="rootViewController" id="Fbx-Qh-bKN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4tf-sd-ku2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2007" y="-400"/>
+        </scene>
+        <!--Create Entry View Controller-->
+        <scene sceneID="UOn-b3-lFo">
+            <objects>
+                <viewController id="PZA-NQ-LBx" customClass="CreateEntryViewController" customModule="There" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YJO-mK-eXa"/>
+                        <viewControllerLayoutGuide type="bottom" id="AlU-OA-huT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7UC-Uk-0m0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Some sort of iron fish art stuck in the freshly painted road :)" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vy7-WN-i3j">
+                                <rect key="frame" x="15" y="8" width="570" height="534"/>
+                                <animations/>
+                                <color key="textColor" red="0.14202572601010099" green="0.14202572601010099" blue="0.14202572601010099" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o0Z-SZ-Z8l">
+                                <rect key="frame" x="0.0" y="550" width="600" height="50"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o6u-gl-m8M" customClass="HalfPointLineView" customModule="There" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.94769965277777779" green="0.94769965277777779" blue="0.94769965277777779" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="XwO-G4-UiD"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="heightConstraint" destination="XwO-G4-UiD" id="Dtq-9e-wON"/>
+                                        </connections>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJy-Gx-FoR" customClass="DesignableButton" customModule="There" customModuleProvider="target">
+                                        <rect key="frame" x="96" y="7" width="36" height="36"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="9ER-28-fSQ"/>
+                                            <constraint firstAttribute="width" constant="36" id="no9-Fu-6Gd"/>
+                                        </constraints>
+                                        <state key="normal" image="image_icon"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.91410195707070707" green="0.91410195707070707" blue="0.91410195707070707" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="18"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="imageButtonTapped:" destination="PZA-NQ-LBx" eventType="touchUpInside" id="i2l-aC-et5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wfh-Yg-2Af" customClass="DesignableButton" customModule="There" customModuleProvider="target">
+                                        <rect key="frame" x="52" y="7" width="36" height="36"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="YpR-Yz-5xu"/>
+                                            <constraint firstAttribute="height" constant="44" id="lls-tJ-R3m"/>
+                                        </constraints>
+                                        <state key="normal" image="video_icon"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.91410195709999997" green="0.91410195709999997" blue="0.91410195709999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="18"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="YpR-Yz-5xu"/>
+                                                <exclude reference="lls-tJ-R3m"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="videoButtonTapped:" destination="PZA-NQ-LBx" eventType="touchUpInside" id="Cra-G3-xhZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jXO-V3-L6e" customClass="DesignableButton" customModule="There" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="7" width="36" height="36"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="BBo-vg-kdn"/>
+                                            <constraint firstAttribute="width" constant="44" id="YW2-XH-W4i"/>
+                                        </constraints>
+                                        <state key="normal" image="audio_icon"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.91410195709999997" green="0.91410195709999997" blue="0.91410195709999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="18"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="BBo-vg-kdn"/>
+                                                <exclude reference="YW2-XH-W4i"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="audioButtonTapped:" destination="PZA-NQ-LBx" eventType="touchUpInside" id="cBS-qx-UzD"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FE0-QN-w6Z" customClass="DesignableButton" customModule="There" customModuleProvider="target">
+                                        <rect key="frame" x="516" y="4" width="80" height="42"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="ovl-fw-qr6"/>
+                                        </constraints>
+                                        <state key="normal" title="Submit"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.92282196969696972" green="0.92282196969696972" blue="0.92282196969696972" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="submitButtonTapped:" destination="PZA-NQ-LBx" eventType="touchUpInside" id="VJd-eV-NEM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="jXO-V3-L6e" firstAttribute="centerY" secondItem="wfh-Yg-2Af" secondAttribute="centerY" id="31s-qV-zVF"/>
+                                    <constraint firstItem="wfh-Yg-2Af" firstAttribute="height" secondItem="HJy-Gx-FoR" secondAttribute="height" id="8CS-iy-0fZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="FE0-QN-w6Z" secondAttribute="bottom" constant="4" id="AyB-hg-N8s"/>
+                                    <constraint firstItem="jXO-V3-L6e" firstAttribute="leading" secondItem="o0Z-SZ-Z8l" secondAttribute="leading" constant="8" id="B9I-cx-GBN"/>
+                                    <constraint firstItem="HJy-Gx-FoR" firstAttribute="centerY" secondItem="o0Z-SZ-Z8l" secondAttribute="centerY" id="Gcc-gL-t7g"/>
+                                    <constraint firstItem="jXO-V3-L6e" firstAttribute="height" secondItem="wfh-Yg-2Af" secondAttribute="height" id="K76-vh-PbN"/>
+                                    <constraint firstAttribute="height" constant="50" id="LNg-n3-N7e"/>
+                                    <constraint firstItem="wfh-Yg-2Af" firstAttribute="centerY" secondItem="HJy-Gx-FoR" secondAttribute="centerY" id="VE6-sf-bpO"/>
+                                    <constraint firstItem="HJy-Gx-FoR" firstAttribute="leading" secondItem="wfh-Yg-2Af" secondAttribute="trailing" constant="8" id="Xy3-N1-9fQ"/>
+                                    <constraint firstItem="jXO-V3-L6e" firstAttribute="width" secondItem="wfh-Yg-2Af" secondAttribute="width" id="Yfa-Uo-Gf6"/>
+                                    <constraint firstItem="FE0-QN-w6Z" firstAttribute="top" secondItem="o0Z-SZ-Z8l" secondAttribute="top" constant="4" id="aLq-S5-XDQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="o6u-gl-m8M" secondAttribute="trailing" id="adq-eF-Qz1"/>
+                                    <constraint firstItem="wfh-Yg-2Af" firstAttribute="width" secondItem="HJy-Gx-FoR" secondAttribute="width" id="eHV-LK-F9a"/>
+                                    <constraint firstItem="o6u-gl-m8M" firstAttribute="top" secondItem="o0Z-SZ-Z8l" secondAttribute="top" id="gwz-lI-Rrk"/>
+                                    <constraint firstItem="wfh-Yg-2Af" firstAttribute="leading" secondItem="jXO-V3-L6e" secondAttribute="trailing" constant="8" id="rfP-Dg-zw2"/>
+                                    <constraint firstAttribute="trailing" secondItem="FE0-QN-w6Z" secondAttribute="trailing" constant="4" id="zh2-LC-tv7"/>
+                                    <constraint firstItem="o6u-gl-m8M" firstAttribute="leading" secondItem="o0Z-SZ-Z8l" secondAttribute="leading" id="zhx-16-OY5"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="o0Z-SZ-Z8l" firstAttribute="top" secondItem="vy7-WN-i3j" secondAttribute="bottom" constant="8" id="9H7-JX-10s"/>
+                            <constraint firstAttribute="trailing" secondItem="vy7-WN-i3j" secondAttribute="trailing" constant="15" id="D7u-29-ygI"/>
+                            <constraint firstItem="AlU-OA-huT" firstAttribute="top" secondItem="o0Z-SZ-Z8l" secondAttribute="bottom" id="cTK-pm-Lfz"/>
+                            <constraint firstItem="o0Z-SZ-Z8l" firstAttribute="leading" secondItem="7UC-Uk-0m0" secondAttribute="leading" id="eRA-kL-ThJ"/>
+                            <constraint firstItem="vy7-WN-i3j" firstAttribute="leading" secondItem="7UC-Uk-0m0" secondAttribute="leading" constant="15" id="p6G-AQ-cZz"/>
+                            <constraint firstAttribute="trailing" secondItem="o0Z-SZ-Z8l" secondAttribute="trailing" id="xIz-4G-23B"/>
+                            <constraint firstItem="vy7-WN-i3j" firstAttribute="top" secondItem="7UC-Uk-0m0" secondAttribute="topMargin" constant="8" id="xqW-ou-DTz"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="x8Q-U2-LSf">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="pNB-Ep-IH5">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="PZA-NQ-LBx" id="Rff-ey-bKh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="audioButton" destination="jXO-V3-L6e" id="LR2-Pt-Js9"/>
+                        <outlet property="imageButton" destination="HJy-Gx-FoR" id="Kx0-Xh-9nS"/>
+                        <outlet property="postToolbarBottomConstraint" destination="cTK-pm-Lfz" id="RfT-jZ-RBZ"/>
+                        <outlet property="submitButton" destination="FE0-QN-w6Z" id="epk-ab-DLH"/>
+                        <outlet property="textView" destination="vy7-WN-i3j" id="erd-L0-qYl"/>
+                        <outlet property="videoButton" destination="wfh-Yg-2Af" id="Zat-G4-85s"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dFa-cL-I94" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2674" y="-400"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="audio_icon" width="22" height="22"/>
+        <image name="image_icon" width="22" height="22"/>
+        <image name="video_icon" width="22" height="16"/>
+    </resources>
 </document>
