@@ -35,6 +35,7 @@ class Entry : PFObject, PFSubclassing {
     class func fetchLatest(completion: ([Entry]?) -> Void) {
         let query = PFQuery(className: self.parseClassName())
         query.limit = 30
+        query.orderByDescending("createdAt")
         query.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
             completion(results as? [Entry])
         }

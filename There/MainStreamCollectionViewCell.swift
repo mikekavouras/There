@@ -8,14 +8,11 @@
 
 import UIKit
 import Parse
+import ParseUI
 
 class MainStreamCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var imageView: PFImageView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
 }

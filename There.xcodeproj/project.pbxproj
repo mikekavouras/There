@@ -11,11 +11,10 @@
 		8D1277E51BC0B73E00E0867D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1277E41BC0B73E00E0867D /* LocationManager.swift */; };
 		8D12807A1BBF540200615BEA /* CreateEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1280791BBF540200615BEA /* CreateEntryViewController.swift */; };
 		8D1280841BBF552B00615BEA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1280831BBF552B00615BEA /* ViewController.swift */; };
-		8D5ED2ED1BC42A9C001BC138 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5ED2EC1BC42A9C001BC138 /* Device.swift */; settings = {ASSET_TAGS = (); }; };
-		8D9561A01BC56ED3000AD2C1 /* MainStreamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D95619E1BC56ED3000AD2C1 /* MainStreamCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
-		8D9561A11BC56ED3000AD2C1 /* MainStreamCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D95619F1BC56ED3000AD2C1 /* MainStreamCollectionViewCell.xib */; settings = {ASSET_TAGS = (); }; };
-		8DBF4C531BC41D4D00E4082B /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBF4C521BC41D4D00E4082B /* DesignableButton.swift */; settings = {ASSET_TAGS = (); }; };
-		8DBF4C551BC41F2F00E4082B /* HalfPointLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBF4C541BC41F2F00E4082B /* HalfPointLineView.swift */; settings = {ASSET_TAGS = (); }; };
+		8D5ED2ED1BC42A9C001BC138 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5ED2EC1BC42A9C001BC138 /* Device.swift */; };
+		8D9561A01BC56ED3000AD2C1 /* MainStreamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D95619E1BC56ED3000AD2C1 /* MainStreamCollectionViewCell.swift */; };
+		8DBF4C531BC41D4D00E4082B /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBF4C521BC41D4D00E4082B /* DesignableButton.swift */; };
+		8DBF4C551BC41F2F00E4082B /* HalfPointLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBF4C541BC41F2F00E4082B /* HalfPointLineView.swift */; };
 		8DFD90C11BBE35B500238DCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD90C01BBE35B500238DCD /* AppDelegate.swift */; };
 		8DFD90C61BBE35B500238DCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DFD90C41BBE35B500238DCD /* Main.storyboard */; };
 		8DFD90CB1BBE35B500238DCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DFD90CA1BBE35B500238DCD /* Assets.xcassets */; };
@@ -60,7 +59,6 @@
 		8D1280831BBF552B00615BEA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8D5ED2EC1BC42A9C001BC138 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		8D95619E1BC56ED3000AD2C1 /* MainStreamCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainStreamCollectionViewCell.swift; sourceTree = "<group>"; };
-		8D95619F1BC56ED3000AD2C1 /* MainStreamCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainStreamCollectionViewCell.xib; sourceTree = "<group>"; };
 		8DBF4C521BC41D4D00E4082B /* DesignableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
 		8DBF4C541BC41F2F00E4082B /* HalfPointLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfPointLineView.swift; sourceTree = "<group>"; };
 		8DFD90BD1BBE35B500238DCD /* There.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = There.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,7 +166,6 @@
 			children = (
 				8DFD910E1BBE447C00238DCD /* MainStreamViewController.swift */,
 				8D95619E1BC56ED3000AD2C1 /* MainStreamCollectionViewCell.swift */,
-				8D95619F1BC56ED3000AD2C1 /* MainStreamCollectionViewCell.xib */,
 			);
 			name = Stream;
 			sourceTree = "<group>";
@@ -372,7 +369,6 @@
 			files = (
 				8DFD90CE1BBE35B500238DCD /* LaunchScreen.storyboard in Resources */,
 				8DFD90CB1BBE35B500238DCD /* Assets.xcassets in Resources */,
-				8D9561A11BC56ED3000AD2C1 /* MainStreamCollectionViewCell.xib in Resources */,
 				8DFD90C61BBE35B500238DCD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

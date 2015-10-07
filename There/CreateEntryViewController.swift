@@ -18,6 +18,8 @@ class CreateEntryViewController: UIViewController,
     @IBOutlet weak var audioButton: DesignableButton!
     @IBOutlet weak var submitButton: DesignableButton!
     
+    var onCreateHandler: (() -> Void)?
+    
     @IBOutlet weak var textView: UITextView!
     
     @IBOutlet weak var postToolbarBottomConstraint: NSLayoutConstraint!
@@ -67,7 +69,11 @@ class CreateEntryViewController: UIViewController,
     
     @IBAction func submitButtonTapped(sender: AnyObject) {
         entry.caption = textView.text
-        entry.saveInBackground()
+        entry.saveInBackgroundWithBlock { (finished: Bool, error: NSError?) -> Void in
+            if let handler = self.onCreateHandler {
+                handler()
+            }
+        }
         dismiss()
     }
     
