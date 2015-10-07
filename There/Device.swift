@@ -13,8 +13,4 @@ extension UIDevice {
     public class func hasCamera() -> Bool {
         return UIImagePickerController.isSourceTypeAvailable(.Camera)
     }
-    
-    public class func canRecordVideo() -> Bool {
-        return 
-    }
 }

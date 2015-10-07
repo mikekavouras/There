@@ -20,6 +20,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         manager.activityType = .Other
         manager.distanceFilter = 20.0
         manager.desiredAccuracy = 10.0
+        manager.pausesLocationUpdatesAutomatically = true
         manager.delegate = self
         return manager
     }()

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class CreateEntryViewController: UIViewController,
     UINavigationControllerDelegate,
@@ -65,7 +66,8 @@ class CreateEntryViewController: UIViewController,
     // MARK: - User actions
     
     @IBAction func submitButtonTapped(sender: AnyObject) {
-        // entry.saveInBackground()
+        entry.caption = textView.text
+        entry.saveInBackground()
         dismiss()
     }
     
@@ -103,21 +105,27 @@ class CreateEntryViewController: UIViewController,
     
 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        //
+        let imageData = UIImageJPEGRepresentation(image, 0.8)!
+        entry.media = PFFile(data: imageData)
+        dismiss()
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        //
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - Declarative
     
     private func showCamera(captureMode: UIImagePickerControllerCameraCaptureMode) {
         let picker = UIImagePickerController()
+        
+        if captureMode == .Video {
+            picker.mediaTypes = ["public.movie"]
+        }
+        
         picker.delegate = self
         picker.sourceType = .Camera
         picker.cameraCaptureMode = captureMode
-        
         presentViewController(picker, animated: true, completion: nil)
     }
     

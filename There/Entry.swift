@@ -24,16 +24,20 @@ class Entry : PFObject, PFSubclassing {
     @NSManaged var caption: String
     
     var typeMapped: EntryType {
-        get {
-            return EntryType(rawValue: self.type)!
-        }
-        set {
-            type = newValue.rawValue
-        }
+        get { return EntryType(rawValue: self.type)! }
+        set { type = newValue.rawValue }
     }
     
     class func parseClassName() -> String {
         return "Entry"
+    }
+    
+    class func fetchLatest(completion: ([Entry]?) -> Void) {
+        let query = PFQuery(className: self.parseClassName())
+        query.limit = 30
+        query.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
+            completion(results as? [Entry])
+        }
     }
     
 }

@@ -7,10 +7,19 @@
 //
 
 import UIKit
+import Parse
 
-class MainStreamViewController: UIViewController {
+class MainStreamViewController: UIViewController,
+    UICollectionViewDelegateFlowLayout,
+    UICollectionViewDataSource,
+    UICollectionViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    var data: [Entry]?
     
-
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
 }
+
