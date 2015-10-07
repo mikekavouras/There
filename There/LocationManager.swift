@@ -71,7 +71,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         if latestLocation!.horizontalAccuracy >= MAX_DISTANCE_FILTER {
             retryCount++
             if retryCount <= MAX_RETRY_COUNT {
-                print(">> FORCE UPDATE <<")
                 forceLocationUpdate()
             } else {
                 retryCount = 0
@@ -109,7 +108,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     func start() {
-
         locationManager.startUpdatingLocation()
     }
     

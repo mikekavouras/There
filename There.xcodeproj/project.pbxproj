@@ -11,6 +11,7 @@
 		8D1277E51BC0B73E00E0867D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1277E41BC0B73E00E0867D /* LocationManager.swift */; };
 		8D12807A1BBF540200615BEA /* CreateEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1280791BBF540200615BEA /* CreateEntryViewController.swift */; };
 		8D1280841BBF552B00615BEA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1280831BBF552B00615BEA /* ViewController.swift */; };
+		8D40688D1BC5CE5E00A1E698 /* EntryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40688C1BC5CE5E00A1E698 /* EntryDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8D5ED2ED1BC42A9C001BC138 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5ED2EC1BC42A9C001BC138 /* Device.swift */; };
 		8D9561A01BC56ED3000AD2C1 /* MainStreamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D95619E1BC56ED3000AD2C1 /* MainStreamCollectionViewCell.swift */; };
 		8DBF4C531BC41D4D00E4082B /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBF4C521BC41D4D00E4082B /* DesignableButton.swift */; };
@@ -57,6 +58,7 @@
 		8D1277E41BC0B73E00E0867D /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		8D1280791BBF540200615BEA /* CreateEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEntryViewController.swift; sourceTree = "<group>"; };
 		8D1280831BBF552B00615BEA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8D40688C1BC5CE5E00A1E698 /* EntryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryDetailViewController.swift; sourceTree = "<group>"; };
 		8D5ED2EC1BC42A9C001BC138 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		8D95619E1BC56ED3000AD2C1 /* MainStreamCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainStreamCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DBF4C521BC41D4D00E4082B /* DesignableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			children = (
 				8D1280781BBF53ED00615BEA /* Stream */,
 				8D1280871BBF56A500615BEA /* Create */,
+				8D40688C1BC5CE5E00A1E698 /* EntryDetailViewController.swift */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				8D5ED2ED1BC42A9C001BC138 /* Device.swift in Sources */,
 				8DFD910F1BBE447C00238DCD /* MainStreamViewController.swift in Sources */,
 				8D9561A01BC56ED3000AD2C1 /* MainStreamCollectionViewCell.swift in Sources */,
+				8D40688D1BC5CE5E00A1E698 /* EntryDetailViewController.swift in Sources */,
 				8D1277E51BC0B73E00E0867D /* LocationManager.swift in Sources */,
 				8D1280841BBF552B00615BEA /* ViewController.swift in Sources */,
 				8DFD90C11BBE35B500238DCD /* AppDelegate.swift in Sources */,

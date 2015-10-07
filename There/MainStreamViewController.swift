@@ -88,6 +88,14 @@ class MainStreamViewController: UIViewController,
                     self.refreshContent(location)
                 }
             }
+        } else if let viewController = segue.destinationViewController as? EntryDetailViewController {
+            if let data = data {
+                if let indexPaths = collectionView.indexPathsForSelectedItems(),
+                    indexPath = indexPaths.first {
+                    viewController.entry = data[indexPath.row]
+                }
+                
+            }
         }
     }
     
