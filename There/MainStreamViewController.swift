@@ -28,13 +28,8 @@ class MainStreamViewController: UIViewController,
         startLocationUpdates()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        refreshContent()
-    }
-    
     @objc private func reload(sender: UIRefreshControl) {
-        refreshContent()
+//        refreshContent()
         sender.endRefreshing()
     }
     
@@ -48,7 +43,7 @@ class MainStreamViewController: UIViewController,
         collectionView.delegate = self
         collectionView.dataSource = self
 
-        setupRefreshControl()
+//        setupRefreshControl()
     }
     
     private func setupRefreshControl() {
@@ -57,32 +52,41 @@ class MainStreamViewController: UIViewController,
         collectionView.addSubview(refreshControl)
     }
     
-    private func refreshContent() {
-        Entry.fetchLatest { (results: [Entry]?) -> Void in
+    private func refreshContent(location: CLLocation) {
+        Entry.fetchAtLocation(location) { (results: [Entry]?) -> Void in
             self.data = results
             self.collectionView.reloadData()
         }
     }
     
     private func startLocationUpdates() {
-        if LocationManager.authorizationStatus() == .Denied {
-            let alert = UIAlertController(title: "Location", message: "This app is useless without your location", preferredStyle: .Alert)
-            presentViewController(alert, animated: true, completion: nil)
+        let manager = LocationManager.sharedManager
+        manager.delegate = self
 
-        } else {
-            let manager = LocationManager.sharedManager
-            manager.delegate = self
+        switch LocationManager.authorizationStatus() {
+        case .Denied:
+            let alert = UIAlertController(title: "Location", message: "This app is useless without your location", preferredStyle: .Alert)
+            let action = UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil)
+            alert.addAction(action)
+            presentViewController(alert, animated: true, completion: nil)
+        case .NotDetermined:
             manager.requestWhenInUseAuthorization()
-            manager.start()
+        default:break
         }
+        
+        manager.start()
     }
     
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let viewController = segue.destinationViewController as? CreateEntryViewController {
-            viewController.onCreateHandler = {
-                self.collectionView.reloadData()
+        if let navController = segue.destinationViewController as? UINavigationController {
+            if let viewController = navController.viewControllers[0] as? CreateEntryViewController {
+                viewController.onCreateHandler = { (entry: Entry) -> Void in
+                    let loc = entry.location!
+                    let location = CLLocation(latitude: loc.latitude, longitude: loc.longitude)
+                    self.refreshContent(location)
+                }
             }
         }
     }
@@ -138,7 +142,7 @@ class MainStreamViewController: UIViewController,
     // MARK: - Location manager delegate
     
     func locationManagerDidUpdateLocations(manager: LocationManager) {
-        print(manager.location)
+        refreshContent(manager.location!)
     }
 }
 

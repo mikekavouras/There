@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="h3D-zM-daN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9052" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="h3D-zM-daN">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9040"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -56,11 +56,12 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="224" height="224"/>
                                                     <animations/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EdD-dd-xmS">
-                                                    <rect key="frame" x="91" y="101" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EdD-dd-xmS">
+                                                    <rect key="frame" x="0.0" y="101" width="224" height="21"/>
                                                     <animations/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -75,10 +76,14 @@
                                             <constraint firstAttribute="trailing" secondItem="wx1-eA-5sW" secondAttribute="trailing" id="KUh-pi-IeX"/>
                                             <constraint firstItem="wx1-eA-5sW" firstAttribute="leading" secondItem="H5S-5P-FqZ" secondAttribute="leading" id="MIT-zx-lSW"/>
                                             <constraint firstItem="wx1-eA-5sW" firstAttribute="top" secondItem="H5S-5P-FqZ" secondAttribute="top" id="PDX-Wd-ypG"/>
+                                            <constraint firstItem="EdD-dd-xmS" firstAttribute="leading" secondItem="H5S-5P-FqZ" secondAttribute="leadingMargin" id="Rkk-QY-eTB"/>
                                             <constraint firstItem="EdD-dd-xmS" firstAttribute="centerX" secondItem="H5S-5P-FqZ" secondAttribute="centerX" id="TqH-RM-nfk"/>
                                             <constraint firstAttribute="bottom" secondItem="wx1-eA-5sW" secondAttribute="bottom" id="US7-c7-rws"/>
+                                            <constraint firstItem="EdD-dd-xmS" firstAttribute="trailing" secondItem="H5S-5P-FqZ" secondAttribute="trailingMargin" id="Yuh-Id-7TG"/>
                                             <constraint firstItem="wx1-eA-5sW" firstAttribute="leading" secondItem="H5S-5P-FqZ" secondAttribute="leading" id="c9H-Kk-yqO"/>
+                                            <constraint firstAttribute="trailing" secondItem="EdD-dd-xmS" secondAttribute="trailing" id="hof-nr-raY"/>
                                             <constraint firstItem="wx1-eA-5sW" firstAttribute="top" secondItem="H5S-5P-FqZ" secondAttribute="top" id="uA8-nN-7t3"/>
+                                            <constraint firstItem="EdD-dd-xmS" firstAttribute="leading" secondItem="H5S-5P-FqZ" secondAttribute="leading" id="zjm-RN-aRC"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -86,6 +91,9 @@
                                                 <exclude reference="US7-c7-rws"/>
                                                 <exclude reference="c9H-Kk-yqO"/>
                                                 <exclude reference="uA8-nN-7t3"/>
+                                                <exclude reference="Rkk-QY-eTB"/>
+                                                <exclude reference="TqH-RM-nfk"/>
+                                                <exclude reference="Yuh-Id-7TG"/>
                                             </mask>
                                         </variation>
                                         <connections>
@@ -95,27 +103,13 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="77q-qZ-ozf">
-                                <rect key="frame" x="265" y="536" width="70" height="44"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="EPp-c7-VPk"/>
-                                    <constraint firstAttribute="width" constant="70" id="eFi-E8-m70"/>
-                                </constraints>
-                                <state key="normal" title="Add"/>
-                                <connections>
-                                    <segue destination="PrW-67-TWK" kind="presentation" id="lLS-YY-V17"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="8p9-gp-GR9" firstAttribute="top" secondItem="JQG-Yb-uP1" secondAttribute="bottom" id="0Lf-eA-wtU"/>
                             <constraint firstItem="JQG-Yb-uP1" firstAttribute="top" secondItem="1ST-ip-K0c" secondAttribute="bottom" id="EXh-VH-YCU"/>
-                            <constraint firstItem="77q-qZ-ozf" firstAttribute="centerX" secondItem="rU5-6X-R6w" secondAttribute="centerX" id="N44-zc-Zni"/>
                             <constraint firstItem="JQG-Yb-uP1" firstAttribute="top" secondItem="1ST-ip-K0c" secondAttribute="bottom" id="cM6-i2-tL8"/>
-                            <constraint firstItem="8p9-gp-GR9" firstAttribute="top" secondItem="77q-qZ-ozf" secondAttribute="bottom" constant="20" id="iaI-A0-f30"/>
                             <constraint firstItem="JQG-Yb-uP1" firstAttribute="leading" secondItem="rU5-6X-R6w" secondAttribute="leading" id="lli-0a-ZOd"/>
                             <constraint firstAttribute="trailing" secondItem="JQG-Yb-uP1" secondAttribute="trailing" id="rqP-4L-gQi"/>
                             <constraint firstItem="JQG-Yb-uP1" firstAttribute="top" secondItem="rU5-6X-R6w" secondAttribute="topMargin" id="zOX-8a-U0B"/>
@@ -127,7 +121,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="tXv-Uv-Mnw"/>
+                    <navigationItem key="navigationItem" id="tXv-Uv-Mnw">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Bnj-rm-05I">
+                            <connections>
+                                <segue destination="PrW-67-TWK" kind="presentation" id="e17-XV-Q1W"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="JQG-Yb-uP1" id="A1d-C4-9au"/>
                     </connections>

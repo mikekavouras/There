@@ -10,27 +10,29 @@ import Foundation
 import CoreLocation
 import UIKit
 
+let MAX_DISTANCE_FILTER: CLLocationAccuracy = 100.0
+
 protocol LocationManagerDelegate {
     func locationManagerDidUpdateLocations(manager: LocationManager)
 }
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
-    
+
     var delegate: LocationManagerDelegate?
     var location: CLLocation? {
-        return self.latestLocation
+        return self._latestLocation
     }
     
     // Constants
     private let DESIRED_ACCURACY: CLLocationDistance = 5.0
     private let DISTANCE_FILTER: CLLocationAccuracy = 20.0
-    private let MAX_DISTANCE_FILTER: CLLocationAccuracy = 100.0
 
     // Singleton
     static let sharedManager = LocationManager()
     
     // a whole bunch of nasty state to reduce the number of locations
     // that we process
+    private var _latestLocation: CLLocation?
     private var latestLocation: CLLocation?
     private var previousLocation: CLLocation?
     private var retryCount = 0
@@ -65,8 +67,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     @objc private func locationTimerFired(timer: NSTimer) {
-        print("timer fired")
-        print(latestLocation)
+        _latestLocation = latestLocation
         if latestLocation!.horizontalAccuracy >= MAX_DISTANCE_FILTER {
             retryCount++
             if retryCount <= MAX_RETRY_COUNT {
@@ -78,11 +79,12 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         } else {
             if let previousLocation = previousLocation {
                 if previousLocation.distanceFromLocation(latestLocation!) <= DISTANCE_FILTER  {
-                    print("!!PING SERVER!!")
                     delegate?.locationManagerDidUpdateLocations(self)
-                    self.previousLocation = latestLocation
                 }
+            } else {
+                delegate?.locationManagerDidUpdateLocations(self)
             }
+            self.previousLocation = latestLocation
         }
         
         latestLocation = nil
@@ -98,6 +100,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     func requestWhenInUseAuthorization() {
+        let _ = locationManager
         locationManager.requestWhenInUseAuthorization()
     }
     
@@ -106,6 +109,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     func start() {
+
         locationManager.startUpdatingLocation()
     }
     
@@ -113,16 +117,4 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         return CLLocationManager.authorizationStatus()
     }
     
-}
-
-extension CLLocation {
-    
-    private var LocationAccuracyThreshold: Double {
-        return 65.0
-    }
-    
-    func isValid() -> Bool {
-        return horizontalAccuracy <= LocationAccuracyThreshold &&
-            timestamp.timeIntervalSinceNow < 1
-    }
 }

@@ -32,10 +32,11 @@ class Entry : PFObject, PFSubclassing {
         return "Entry"
     }
     
-    class func fetchLatest(completion: ([Entry]?) -> Void) {
+    class func fetchAtLocation(location: CLLocation, completion: ([Entry]?) -> Void) {
         let query = PFQuery(className: self.parseClassName())
         query.limit = 30
         query.orderByDescending("createdAt")
+        query.whereKey("location", nearGeoPoint: PFGeoPoint(location: location), withinKilometers: MAX_DISTANCE_FILTER / 1000.0)
         query.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
             completion(results as? [Entry])
         }

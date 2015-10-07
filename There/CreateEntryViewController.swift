@@ -18,7 +18,7 @@ class CreateEntryViewController: UIViewController,
     @IBOutlet weak var audioButton: DesignableButton!
     @IBOutlet weak var submitButton: DesignableButton!
     
-    var onCreateHandler: (() -> Void)?
+    var onCreateHandler: ((entry: Entry) -> Void)?
     
     @IBOutlet weak var textView: UITextView!
     
@@ -68,13 +68,22 @@ class CreateEntryViewController: UIViewController,
     // MARK: - User actions
     
     @IBAction func submitButtonTapped(sender: AnyObject) {
-        entry.caption = textView.text
-        entry.saveInBackgroundWithBlock { (finished: Bool, error: NSError?) -> Void in
-            if let handler = self.onCreateHandler {
-                handler()
+        if let location = LocationManager.sharedManager.location {
+            if location.horizontalAccuracy <= MAX_DISTANCE_FILTER {
+                entry.caption = textView.text
+                entry.location = PFGeoPoint(location: LocationManager.sharedManager.location)
+                entry.saveInBackgroundWithBlock { (finished: Bool, error: NSError?) -> Void in
+                    if let handler = self.onCreateHandler {
+                        handler(entry: self.entry)
+                    }
+                }
+                dismiss()
+            } else {
+                throwLocationAlert()
             }
+        } else {
+            throwLocationAlert()
         }
-        dismiss()
     }
     
     @IBAction func cancelButtonTapped(sender: AnyObject) {
@@ -133,6 +142,13 @@ class CreateEntryViewController: UIViewController,
         picker.sourceType = .Camera
         picker.cameraCaptureMode = captureMode
         presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    private func throwLocationAlert() {
+        let alert = UIAlertController(title: "Location", message: "Location accuracy isn't good enough", preferredStyle: .Alert)
+        let action = UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     @objc private func dismiss() {
