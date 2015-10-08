@@ -334,6 +334,7 @@
 				TargetAttributes = {
 					8DFD90BC1BBE35B500238DCD = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = A56D86G827;
 					};
 					8DFD90D31BBE35B500238DCD = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -596,7 +597,9 @@
 			baseConfigurationReference = F44E46570CA81C1FAA90CB60 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = There/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mikekavouras.There;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -608,7 +611,9 @@
 			baseConfigurationReference = DBD3CEBACB26E27DF5A22CF2 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = There/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mikekavouras.There;
 				PRODUCT_NAME = "$(TARGET_NAME)";
