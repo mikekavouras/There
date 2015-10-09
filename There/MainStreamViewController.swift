@@ -113,7 +113,7 @@ LocationManagerDelegate {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        let width = view.frame.size.width / NUMBER_OF_COLUMNS
+        let width = view.frame.size.width / NUMBER_OF_COLUMNS - 0.5
         return CGSizeMake(width, width)
     }
     
@@ -124,12 +124,12 @@ LocationManagerDelegate {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
         
-        return 0.0
+        return 1.0
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         
-        return 0.0
+        return 1.0
     }
     
     

@@ -35,6 +35,7 @@ class MainStreamCollectionViewCell: UICollectionViewCell {
         timestampLabel.text = entry.createdAt?.timeAgoSimple
         imageView.file = entry.typeMapped == .Video ? entry.posterImage : entry.media
         imageView.loadInBackground()
+        textLabel.text = entry.caption ?? "" 
         iconImageView.image = entry.typeMapped.icon()
     }
 }

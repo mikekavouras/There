@@ -13,6 +13,22 @@ class CreateEntryViewController: UIViewController,
     UINavigationControllerDelegate,
     UIImagePickerControllerDelegate {
     
+    // MARK: -
+    // MARK: Constants
+    
+    
+    /* VIDEO QUALITY (10 seconds) (Parse max upload = 10mb)
+    TypeLow:               67289 bytes (0.067mb)
+    TypeMedium:           964722 bytes (0.9mb)
+    Type640x480:         4467734 bytes (4.47mb)
+    TypeHigh:           15775077 bytes (15.78mb)
+    TypeIFrame960x540:  37579515 bytes (37.58mb)
+    TypeIFrame1280x720: 49055343 bytes (49.06mb)
+    */
+    let VIDEO_QUALITY: UIImagePickerControllerQualityType = .TypeHigh
+    
+    let MAX_VIDEO_DURATION: NSTimeInterval = 4
+    
     @IBOutlet weak var imageButton: DesignableButton!
     @IBOutlet weak var videoButton: DesignableButton!
     @IBOutlet weak var audioButton: DesignableButton!
@@ -34,28 +50,28 @@ class CreateEntryViewController: UIViewController,
     // MARK: -
     // MARK: Life cycle
 
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         setup()
     }
     
-    override func viewWillAppear(animated: Bool)
-    {
+    override func viewWillAppear(animated: Bool) {
+        
         super.viewWillAppear(animated)
         
         textView.becomeFirstResponder()
     }
     
-    override func viewWillDisappear(animated: Bool)
-    {
+    override func viewWillDisappear(animated: Bool) {
+        
         super.viewWillDisappear(animated)
         view.endEditing(true)
     }
     
-    deinit
-    {
+    deinit {
+        
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
@@ -63,19 +79,19 @@ class CreateEntryViewController: UIViewController,
     // MARK: -
     // MARK: Setup
     
-    private func setup()
-    {
+    private func setup() {
+        
         checkFeatureRequirements()
         setupNotificationObservers()
     }
     
-    private func setupNotificationObservers()
-    {
+    private func setupNotificationObservers() {
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
     }
     
-    private func checkFeatureRequirements()
-    {
+    private func checkFeatureRequirements() {
+        
         imageButton.enabled = UIDevice.hasCamera()
         videoButton.enabled = UIDevice.hasCamera()
         audioButton.enabled = false
@@ -85,43 +101,27 @@ class CreateEntryViewController: UIViewController,
     // MARK: -
     // MARK: User actions
     
-    @IBAction func submitButtonTapped(sender: AnyObject)
-    {
-        if let location = LocationManager.sharedManager.location {
-            if location.horizontalAccuracy <= MAX_DISTANCE_FILTER {
-                entry.caption = textView.text
-                entry.location = PFGeoPoint(location: LocationManager.sharedManager.location)
-                entry.saveInBackgroundWithBlock { (finished: Bool, error: NSError?) -> Void in
-                    if let handler = self.onCreateHandler {
-                        handler(entry: self.entry)
-                    }
-                }
-                dismiss()
-            } else {
-                throwLocationAlert()
-            }
-        } else {
-            throwLocationAlert()
-        }
+    @IBAction func submitButtonTapped(sender: AnyObject) {
+        saveEntry()
     }
     
-    @IBAction func cancelButtonTapped(sender: AnyObject)
-    {
+    @IBAction func cancelButtonTapped(sender: AnyObject) {
+        
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBAction func imageButtonTapped(sender: AnyObject)
-    {
+    @IBAction func imageButtonTapped(sender: AnyObject) {
+        
         showCamera(.Photo)
     }
     
-    @IBAction func videoButtonTapped(sender: AnyObject)
-    {
+    @IBAction func videoButtonTapped(sender: AnyObject) {
+        
         showCamera(.Video)
     }
     
-    @IBAction func audioButtonTapped(sender: AnyObject)
-    {
+    @IBAction func audioButtonTapped(sender: AnyObject) {
+        
         print("audio button tapped")
     }
     
@@ -129,8 +129,8 @@ class CreateEntryViewController: UIViewController,
     // MARK: -
     // MARK: Notifications
     
-    @objc private func keyboardWillShow(notification: NSNotification)
-    {
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        
         if let info = notification.userInfo {
             if let duration = (info[UIKeyboardAnimationDurationUserInfoKey] as? NSValue) as? NSTimeInterval,
                 size = (info[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue() {
@@ -146,8 +146,8 @@ class CreateEntryViewController: UIViewController,
     // MARK: -
     // MARK: Image picker delegate
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject])
-    {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
         if let type = info[UIImagePickerControllerMediaType] as? String {
             if type == "public.image" {
                 if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -159,8 +159,8 @@ class CreateEntryViewController: UIViewController,
                 if let file = info[UIImagePickerControllerMediaURL] as? NSURL {
                     if let videoData = NSData(contentsOfURL: file) {
                         if let image = file.thumbnailImagePreview() {
-                            entry.posterImage = PFFile(data: UIImageJPEGRepresentation(image, 0.8)!)
-                            entry.media = PFFile(data: videoData)
+                            entry.posterImage = PFFile(data: UIImagePNGRepresentation(image)!)
+                            entry.media = PFFile(data: videoData, contentType: "video/mp4")
                             entry.typeMapped = .Video
                         }
                     }
@@ -171,8 +171,8 @@ class CreateEntryViewController: UIViewController,
         dismiss()
     }
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController)
-    {
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -180,31 +180,64 @@ class CreateEntryViewController: UIViewController,
     // MARK: -
     // MARK: Declarative
     
-    private func showCamera(captureMode: UIImagePickerControllerCameraCaptureMode)
-    {
+    private func saveEntry() {
+        if let location = LocationManager.sharedManager.location {
+            if location.horizontalAccuracy <= MAX_DISTANCE_FILTER {
+                entry.caption = textView.text
+                entry.location = PFGeoPoint(location: LocationManager.sharedManager.location)
+                if entry.isValid {
+                    entry.saveInBackgroundWithBlock { (finished: Bool, error: NSError?) -> Void in
+                        if let handler = self.onCreateHandler {
+                            handler(entry: self.entry)
+                        }
+                    }
+                } else {
+                    throwValidAlert()
+                }
+                dismiss()
+            } else {
+                throwLocationAlert()
+            }
+        } else {
+            throwLocationAlert()
+        }
+    }
+    
+    private func showCamera(captureMode: UIImagePickerControllerCameraCaptureMode) {
+        
         let picker = UIImagePickerController()
         
         if captureMode == .Video {
             picker.mediaTypes = ["public.movie"]
-            picker.videoMaximumDuration = 10
+            picker.videoMaximumDuration = MAX_VIDEO_DURATION
+            picker.videoQuality = VIDEO_QUALITY
         }
         
         picker.delegate = self
         picker.sourceType = .Camera
         picker.cameraCaptureMode = captureMode
+        picker.cameraFlashMode = .Off
         presentViewController(picker, animated: true, completion: nil)
     }
     
-    private func throwLocationAlert()
-    {
+    private func throwLocationAlert() {
+        
         let alert = UIAlertController(title: "Location", message: "Location accuracy isn't good enough", preferredStyle: .Alert)
         let action = UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
     }
     
-    @objc private func dismiss()
-    {
+    private func throwValidAlert() {
+        
+        let alert = UIAlertController(title: "Entry", message: "You need to add media or text", preferredStyle: .Alert)
+        let action = UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    @objc private func dismiss() {
+        
         dismissViewControllerAnimated(true, completion: nil)
     }
     

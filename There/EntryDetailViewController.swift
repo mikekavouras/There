@@ -8,16 +8,22 @@
 
 import UIKit
 import ParseUI
+import AVKit
+import AVFoundation
 
 class EntryDetailViewController: UIViewController {
 
     var entry: Entry!
-    @IBOutlet weak var imageView: PFImageView!
+    var mediaView: UIView?
+    var videoPlayer: AVPlayer?
+    
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var mediaContainerView: UIView!
     
     @IBOutlet weak var contentViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageViewAspectRatioConstraint: NSLayoutConstraint!
+    
     
     // MARK: -
     // MARK: Life cycle
@@ -26,16 +32,7 @@ class EntryDetailViewController: UIViewController {
     {
         super.viewDidLoad()
         
-        imageView.layer.masksToBounds = true
-        if let media = entry.media {
-            imageView.file = media
-            imageView.loadInBackground()
-        } else {
-            imageViewAspectRatioConstraint.constant = 0
-        }
-        
-        timestampLabel.text = "\(entry.createdAt!.timeAgoSimple) ago"
-        captionLabel.text = entry.caption
+        setup()
     }
     
     override func viewWillLayoutSubviews()
@@ -43,7 +40,69 @@ class EntryDetailViewController: UIViewController {
         super.viewWillLayoutSubviews()
         
         contentViewWidthConstraint.constant = view.frame.size.width
+        if let mediaView = mediaView {
+            mediaView.frame = mediaContainerView.bounds
+        }
     }
+    
+    
+    // MARK: -
+    // MARK: Setup
+    
+    private func setup()
+    {
+        timestampLabel.text = "\(entry.createdAt!.timeAgoSimple) ago"
+        captionLabel.text = entry.caption ?? ""
+        
+        mediaContainerView.layer.masksToBounds = true
+        
+        setupMedia()
+    }
+    
+    private func setupMedia()
+    {
+        switch entry.typeMapped {
+        case .Image:
+            setupImage()
+        case .Video:
+            setupVideo()
+        default: break
+        }
+    }
+    
+    private func setupImage()
+    {
+        mediaView = PFImageView()
+        mediaView!.contentMode = .ScaleAspectFill
+        mediaView!.frame = mediaContainerView.bounds
+        mediaView!.layer.masksToBounds = true
+        if let media = entry.media {
+            (mediaView as! PFImageView).file = media
+            (mediaView as! PFImageView).loadInBackground()
+        } else {
+            imageViewAspectRatioConstraint.constant = 0
+        }
+ 
+        mediaContainerView.addSubview(mediaView!)
+    }
+    
+    private func setupVideo()
+    {
+        if let url = entry.media!.url {
+            
+            let asset = AVAsset(URL: NSURL(string: url)!)
+            let playerItem = AVPlayerItem(asset: asset)
+            videoPlayer = AVPlayer(playerItem: playerItem)
+            videoPlayer!.play()
+            videoPlayer!.actionAtItemEnd = .None
+            
+            let layer = AVPlayerLayer(player: videoPlayer!)
+            layer.frame = mediaContainerView.bounds
+            layer.videoGravity = AVLayerVideoGravityResizeAspectFill
+            mediaContainerView.layer.addSublayer(layer)
+        }
+    }
+    
     
     // MARK: -
     // MARK: User actions

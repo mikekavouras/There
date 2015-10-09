@@ -38,6 +38,10 @@ class Entry : PFObject, PFSubclassing {
     @NSManaged var caption: String?
     @NSManaged var posterImage: PFFile?
     
+    var isValid: Bool {
+        return (caption != nil && caption != "") || media != nil
+    }
+    
     var typeMapped: EntryType {
         get { return EntryType(rawValue: self.type)! }
         set { type = newValue.rawValue }

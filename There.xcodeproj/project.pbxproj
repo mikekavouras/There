@@ -16,10 +16,11 @@
 		8D3C07CE1BC776430032B5D0 /* UIColor+EntryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C07CD1BC776430032B5D0 /* UIColor+EntryType.swift */; };
 		8D40688D1BC5CE5E00A1E698 /* EntryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40688C1BC5CE5E00A1E698 /* EntryDetailViewController.swift */; };
 		8D5ED2ED1BC42A9C001BC138 /* UIDevice+Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5ED2EC1BC42A9C001BC138 /* UIDevice+Camera.swift */; };
-		8D92D4691BC7E8C200D0F8EA /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D92D4681BC7E8C200D0F8EA /* NSDate+Extension.swift */; settings = {ASSET_TAGS = (); }; };
+		8D92D4691BC7E8C200D0F8EA /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D92D4681BC7E8C200D0F8EA /* NSDate+Extension.swift */; };
 		8D9561A01BC56ED3000AD2C1 /* MainStreamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D95619E1BC56ED3000AD2C1 /* MainStreamCollectionViewCell.swift */; };
 		8DBF4C531BC41D4D00E4082B /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBF4C521BC41D4D00E4082B /* DesignableButton.swift */; };
 		8DBF4C551BC41F2F00E4082B /* HalfPointLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBF4C541BC41F2F00E4082B /* HalfPointLineView.swift */; };
+		8DE6B56F1BC846240049380F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6B56E1BC846240049380F /* SettingsTableViewController.swift */; };
 		8DFD90C11BBE35B500238DCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD90C01BBE35B500238DCD /* AppDelegate.swift */; };
 		8DFD90C61BBE35B500238DCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DFD90C41BBE35B500238DCD /* Main.storyboard */; };
 		8DFD90CB1BBE35B500238DCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DFD90CA1BBE35B500238DCD /* Assets.xcassets */; };
@@ -71,6 +72,7 @@
 		8D95619E1BC56ED3000AD2C1 /* MainStreamCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainStreamCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DBF4C521BC41D4D00E4082B /* DesignableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
 		8DBF4C541BC41F2F00E4082B /* HalfPointLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfPointLineView.swift; sourceTree = "<group>"; };
+		8DE6B56E1BC846240049380F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		8DFD90BD1BBE35B500238DCD /* There.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = There.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFD90C01BBE35B500238DCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DFD90C51BBE35B500238DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				8D1280781BBF53ED00615BEA /* Stream */,
 				8D1280871BBF56A500615BEA /* Create */,
 				8D40688C1BC5CE5E00A1E698 /* EntryDetailViewController.swift */,
+				8DE6B56E1BC846240049380F /* SettingsTableViewController.swift */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				8D40688D1BC5CE5E00A1E698 /* EntryDetailViewController.swift in Sources */,
 				8D1277E51BC0B73E00E0867D /* LocationManager.swift in Sources */,
 				8D1280841BBF552B00615BEA /* UIViewController+Storyboard.swift in Sources */,
+				8DE6B56F1BC846240049380F /* SettingsTableViewController.swift in Sources */,
 				8DFD90C11BBE35B500238DCD /* AppDelegate.swift in Sources */,
 				8D3C07CC1BC7577C0032B5D0 /* NSURL+ImageGenerator.swift in Sources */,
 				8D12807A1BBF540200615BEA /* CreateEntryViewController.swift in Sources */,
