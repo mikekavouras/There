@@ -10,7 +10,10 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-    class func viewControllerWithIdentifier(identifier: String, inStoryboard storyboard: String) -> UIViewController? {
+    
+    class func viewControllerWithIdentifier(identifier: String, inStoryboard storyboard: String) -> UIViewController?
+    {
        return UIStoryboard(name: storyboard, bundle: nil).instantiateViewControllerWithIdentifier(identifier)
     }
+    
 }

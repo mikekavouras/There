@@ -10,19 +10,23 @@ import UIKit
 
 extension UIImage {
     
-    class func iconForTextType() -> UIImage {
+    class func iconForTextType() -> UIImage
+    {
         return UIImage(named: "image_icon")!
     }
     
-    class func iconForImageType() -> UIImage {
+    class func iconForImageType() -> UIImage
+    {
         return UIImage(named: "image_icon")!
     }
     
-    class func iconForVideoType() -> UIImage {
+    class func iconForVideoType() -> UIImage
+    {
         return UIImage(named: "video_icon")!
     }
     
-    class func iconForAudioType() -> UIImage {
+    class func iconForAudioType() -> UIImage
+    {
         return UIImage(named: "audio_icon")!
     }
     

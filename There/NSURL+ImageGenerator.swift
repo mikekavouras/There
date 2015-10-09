@@ -11,7 +11,8 @@ import AVFoundation
 
 extension NSURL {
     
-    func thumbnailImagePreview() -> UIImage? {
+    func thumbnailImagePreview() -> UIImage?
+    {
         let asset = AVURLAsset(URL: self)
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         imageGenerator.appliesPreferredTrackTransform = true
@@ -25,4 +26,5 @@ extension NSURL {
             return nil
         }
     }
+    
 }

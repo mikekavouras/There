@@ -12,7 +12,7 @@ import ParseUI
 
 class MainStreamCollectionViewCell: UICollectionViewCell {
     
-    var entry: Entry! {
+    var entry: Entry!{
         didSet {
             imageView.image = nil
             loadEntry()

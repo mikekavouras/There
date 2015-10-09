@@ -10,7 +10,9 @@ import UIKit
 
 
 extension UIDevice {
-    public class func hasCamera() -> Bool {
+    
+    public class func hasCamera() -> Bool
+    {
         return UIImagePickerController.isSourceTypeAvailable(.Camera)
     }
 }
