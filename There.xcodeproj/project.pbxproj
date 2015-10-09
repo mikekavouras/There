@@ -16,6 +16,7 @@
 		8D3C07CE1BC776430032B5D0 /* UIColor+EntryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C07CD1BC776430032B5D0 /* UIColor+EntryType.swift */; };
 		8D40688D1BC5CE5E00A1E698 /* EntryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40688C1BC5CE5E00A1E698 /* EntryDetailViewController.swift */; };
 		8D5ED2ED1BC42A9C001BC138 /* UIDevice+Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5ED2EC1BC42A9C001BC138 /* UIDevice+Camera.swift */; };
+		8D92D4691BC7E8C200D0F8EA /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D92D4681BC7E8C200D0F8EA /* NSDate+Extension.swift */; settings = {ASSET_TAGS = (); }; };
 		8D9561A01BC56ED3000AD2C1 /* MainStreamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D95619E1BC56ED3000AD2C1 /* MainStreamCollectionViewCell.swift */; };
 		8DBF4C531BC41D4D00E4082B /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBF4C521BC41D4D00E4082B /* DesignableButton.swift */; };
 		8DBF4C551BC41F2F00E4082B /* HalfPointLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBF4C541BC41F2F00E4082B /* HalfPointLineView.swift */; };
@@ -66,6 +67,7 @@
 		8D3C07CD1BC776430032B5D0 /* UIColor+EntryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+EntryType.swift"; sourceTree = "<group>"; };
 		8D40688C1BC5CE5E00A1E698 /* EntryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryDetailViewController.swift; sourceTree = "<group>"; };
 		8D5ED2EC1BC42A9C001BC138 /* UIDevice+Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Camera.swift"; sourceTree = "<group>"; };
+		8D92D4681BC7E8C200D0F8EA /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
 		8D95619E1BC56ED3000AD2C1 /* MainStreamCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainStreamCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DBF4C521BC41D4D00E4082B /* DesignableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
 		8DBF4C541BC41F2F00E4082B /* HalfPointLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfPointLineView.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				8D5ED2EC1BC42A9C001BC138 /* UIDevice+Camera.swift */,
 				8D3C07CB1BC7577C0032B5D0 /* NSURL+ImageGenerator.swift */,
 				8D3C07CD1BC776430032B5D0 /* UIColor+EntryType.swift */,
+				8D92D4681BC7E8C200D0F8EA /* NSDate+Extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 				8D5ED2ED1BC42A9C001BC138 /* UIDevice+Camera.swift in Sources */,
 				8DFD910F1BBE447C00238DCD /* MainStreamViewController.swift in Sources */,
 				8D9561A01BC56ED3000AD2C1 /* MainStreamCollectionViewCell.swift in Sources */,
+				8D92D4691BC7E8C200D0F8EA /* NSDate+Extension.swift in Sources */,
 				8D3C07CE1BC776430032B5D0 /* UIColor+EntryType.swift in Sources */,
 				8D40688D1BC5CE5E00A1E698 /* EntryDetailViewController.swift in Sources */,
 				8D1277E51BC0B73E00E0867D /* LocationManager.swift in Sources */,

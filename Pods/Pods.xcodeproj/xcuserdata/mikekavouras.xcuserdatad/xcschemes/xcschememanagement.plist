@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>NSDate+TimeAgo.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,27 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2A0CE4D1BB4B723305DE3BF7D5B4461E</key>
+		<key>98D73753526D5F888977E20DE8AB462C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3BFE4B16EFC1458907D2940DAE247B18</key>
+		<key>B6DDB9498C24750E8C7CDDFCCE6B3A3D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A3E011B5A1AD3ADDB09333F55C74061E</key>
+		<key>D682F647557F86F1A4AC027305D0A3E0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EAF1BBA441F8832B76E05E0DA96AFBE6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EEEE88AE9CB30EF40CB94B9C252E2C34</key>
+		<key>E91C53DD1CD833E5748B73AEC089F923</key>
 		<dict>
 			<key>primary</key>
 			<true/>

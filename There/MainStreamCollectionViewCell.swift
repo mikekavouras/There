@@ -9,18 +9,13 @@
 import UIKit
 import Parse
 import ParseUI
-import NSDate_TimeAgo
 
 class MainStreamCollectionViewCell: UICollectionViewCell {
     
     var entry: Entry! {
         didSet {
-            textLabel.text = entry.caption
-            timestampLabel.text = entry.createdAt?.timeAgoSimple()
             imageView.image = nil
-            imageView.file = entry.typeMapped == .Video ? entry.posterImage : entry.media
-            imageView.loadInBackground()
-            iconImageView.image = entry.typeMapped.icon()
+            loadEntry()
         }
     }
 
@@ -29,8 +24,17 @@ class MainStreamCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: PFImageView!
     @IBOutlet weak var timestampLabel: UILabel!
     
-    override func awakeFromNib() {
+    override func awakeFromNib()
+    {
         super.awakeFromNib()
         backgroundColor = UIColor.groupTableViewBackgroundColor()
+    }
+    
+    private func loadEntry()
+    {
+        timestampLabel.text = entry.createdAt?.timeAgoSimple
+        imageView.file = entry.typeMapped == .Video ? entry.posterImage : entry.media
+        imageView.loadInBackground()
+        iconImageView.image = entry.typeMapped.icon()
     }
 }
