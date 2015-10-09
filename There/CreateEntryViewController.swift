@@ -24,13 +24,17 @@ class CreateEntryViewController: UIViewController,
     
     @IBOutlet weak var postToolbarBottomConstraint: NSLayoutConstraint!
     
-    var entry: Entry = Entry()
+    lazy var entry: Entry = {
+        let e = Entry()
+        e.typeMapped = .Text
+        return e
+    }()
     
     // MARK: - Life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setup()
     }
     
@@ -63,6 +67,7 @@ class CreateEntryViewController: UIViewController,
     private func checkFeatureRequirements() {
         imageButton.enabled = UIDevice.hasCamera()
         videoButton.enabled = UIDevice.hasCamera()
+        audioButton.enabled = false
     }
 
     // MARK: - User actions
@@ -118,10 +123,23 @@ class CreateEntryViewController: UIViewController,
     
     // MARK: - Image picker delegate
     
-
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        let imageData = UIImageJPEGRepresentation(image, 0.8)!
-        entry.media = PFFile(data: imageData)
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let type = info[UIImagePickerControllerMediaType] as? String {
+            if type == "public.image" {
+                if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+                    let imageData = UIImageJPEGRepresentation(image, 0.8)!
+                    entry.media = PFFile(data: imageData)
+                    entry.typeMapped = .Image
+                }
+            } else if type == "public.movie" {
+                if let file = info[UIImagePickerControllerMediaURL] as? NSURL {
+                    if let videoData = NSData(contentsOfURL: file) {
+                        entry.media = PFFile(data: videoData)
+                        entry.typeMapped = .Video
+                    }
+                }
+            }
+        }
         dismiss()
     }
     
@@ -136,6 +154,7 @@ class CreateEntryViewController: UIViewController,
         
         if captureMode == .Video {
             picker.mediaTypes = ["public.movie"]
+            picker.videoMaximumDuration = 5
         }
         
         picker.delegate = self
