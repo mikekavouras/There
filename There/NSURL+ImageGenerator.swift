@@ -11,35 +11,18 @@ import AVFoundation
 
 extension NSURL {
     
-    func thumbnailImagePreview -> UIImage {
-        let asset = AVURLAsset
-    }
-    + (UIImage *)thumbnailImageForVideo:(NSURL *)videoURL
-    atTime:(NSTimeInterval)time
-    {
-    
-    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
-    NSParameterAssert(asset);
-    AVAssetImageGenerator *assetIG =
-    [[AVAssetImageGenerator alloc] initWithAsset:asset];
-    assetIG.appliesPreferredTrackTransform = YES;
-    assetIG.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels;
-    
-    CGImageRef thumbnailImageRef = NULL;
-    CFTimeInterval thumbnailImageTime = time;
-    NSError *igError = nil;
-    thumbnailImageRef =
-    [assetIG copyCGImageAtTime:CMTimeMake(thumbnailImageTime, 60)
-    actualTime:NULL
-    error:&igError];
-    
-    if (!thumbnailImageRef)
-    NSLog(@"thumbnailImageGenerationError %@", igError );
-    
-    UIImage *thumbnailImage = thumbnailImageRef
-    ? [[UIImage alloc] initWithCGImage:thumbnailImageRef]
-    : nil;
-    
-    return thumbnailImage;
+    func thumbnailImagePreview() -> UIImage? {
+        let asset = AVURLAsset(URL: self)
+        let imageGenerator = AVAssetImageGenerator(asset: asset)
+        imageGenerator.appliesPreferredTrackTransform = true
+        imageGenerator.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels
+        
+        do {
+            let time: CMTime = CMTime(seconds: 0.0, preferredTimescale:1)
+            let imageRef = try imageGenerator.copyCGImageAtTime(time, actualTime: nil)
+            return UIImage(CGImage: imageRef)
+        } catch {
+            return nil
+        }
     }
 }

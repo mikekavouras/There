@@ -134,12 +134,16 @@ class CreateEntryViewController: UIViewController,
             } else if type == "public.movie" {
                 if let file = info[UIImagePickerControllerMediaURL] as? NSURL {
                     if let videoData = NSData(contentsOfURL: file) {
-                        entry.media = PFFile(data: videoData)
-                        entry.typeMapped = .Video
+                        if let image = file.thumbnailImagePreview() {
+                            entry.posterImage = PFFile(data: UIImageJPEGRepresentation(image, 0.8)!)
+                            entry.media = PFFile(data: videoData)
+                            entry.typeMapped = .Video
+                        }
                     }
                 }
             }
         }
+        
         dismiss()
     }
     
@@ -154,7 +158,7 @@ class CreateEntryViewController: UIViewController,
         
         if captureMode == .Video {
             picker.mediaTypes = ["public.movie"]
-            picker.videoMaximumDuration = 5
+            picker.videoMaximumDuration = 10
         }
         
         picker.delegate = self

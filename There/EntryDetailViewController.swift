@@ -8,12 +8,14 @@
 
 import UIKit
 import ParseUI
+import NSDate_TimeAgo
 
 class EntryDetailViewController: UIViewController {
 
     var entry: Entry!
     @IBOutlet weak var imageView: PFImageView!
     @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var timestampLabel: UILabel!
     
     @IBOutlet weak var contentViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageViewAspectRatioConstraint: NSLayoutConstraint!
@@ -29,6 +31,7 @@ class EntryDetailViewController: UIViewController {
             imageViewAspectRatioConstraint.constant = 0
         }
         
+        timestampLabel.text = "\(entry.createdAt!.timeAgoSimple()) ago"
         captionLabel.text = entry.caption
     }
     

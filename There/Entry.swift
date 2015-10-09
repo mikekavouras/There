@@ -14,6 +14,20 @@ enum EntryType: String {
     case Image = "image"
     case Video = "video"
     case Audio = "audio"
+    
+    func icon() -> UIImage {
+        switch self {
+        case .Text:
+            return UIImage.iconForTextType()
+        case .Image:
+            return UIImage.iconForImageType()
+        case .Video:
+            return UIImage.iconForVideoType()
+        case .Audio:
+            return UIImage.iconForAudioType()
+            
+        }
+    }
 }
 
 class Entry : PFObject, PFSubclassing {
@@ -21,7 +35,8 @@ class Entry : PFObject, PFSubclassing {
     @NSManaged var location: PFGeoPoint?
     @NSManaged var type: String
     @NSManaged var media: PFFile?
-    @NSManaged var caption: String
+    @NSManaged var caption: String?
+    @NSManaged var posterImage: PFFile?
     
     var typeMapped: EntryType {
         get { return EntryType(rawValue: self.type)! }

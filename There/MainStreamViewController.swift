@@ -28,11 +28,6 @@ class MainStreamViewController: UIViewController,
         startLocationUpdates()
     }
     
-    @objc private func reload(sender: UIRefreshControl) {
-//        refreshContent()
-        sender.endRefreshing()
-    }
-    
     // MARK: - Setup
     
     private func setup() {
@@ -42,16 +37,8 @@ class MainStreamViewController: UIViewController,
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
+    }
 
-//        setupRefreshControl()
-    }
-    
-    private func setupRefreshControl() {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: "reload:", forControlEvents: .ValueChanged)
-        collectionView.addSubview(refreshControl)
-    }
-    
     private func refreshContent(location: CLLocation) {
         Entry.fetchAtLocation(location) { (results: [Entry]?) -> Void in
             self.data = results
@@ -87,14 +74,14 @@ class MainStreamViewController: UIViewController,
                     let location = CLLocation(latitude: loc.latitude, longitude: loc.longitude)
                     self.refreshContent(location)
                 }
-            }
-        } else if let viewController = segue.destinationViewController as? EntryDetailViewController {
-            if let data = data {
-                if let indexPaths = collectionView.indexPathsForSelectedItems(),
-                    indexPath = indexPaths.first {
-                    viewController.entry = data[indexPath.row]
+            } else if let viewController = navController.viewControllers[0] as? EntryDetailViewController {
+                if let data = data {
+                    if let indexPaths = collectionView.indexPathsForSelectedItems(),
+                        indexPath = indexPaths.first {
+                            viewController.entry = data[indexPath.row]
+                    }
+                    
                 }
-                
             }
         }
     }
@@ -133,15 +120,10 @@ class MainStreamViewController: UIViewController,
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MainStreamCellIdentifier", forIndexPath: indexPath) as! MainStreamCollectionViewCell
-        cell.backgroundColor = UIColor.groupTableViewBackgroundColor()
-        cell.imageView.image = nil
         
         if let data = data {
-            let d = data[indexPath.row]
-            cell.textLabel.text = d.caption
-            
-            cell.imageView.file = d.media
-            cell.imageView.loadInBackground()
+            let entry = data[indexPath.row]
+            cell.entry = entry
         }
         
         return cell
