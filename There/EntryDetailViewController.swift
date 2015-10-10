@@ -28,16 +28,16 @@ class EntryDetailViewController: UIViewController {
     // MARK: -
     // MARK: Life cycle
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         setup()
     }
     
-    override func viewWillLayoutSubviews()
-    {
-        super.viewWillLayoutSubviews()
+    override func viewDidLayoutSubviews() {
+        
+        super.viewDidLayoutSubviews()
         
         contentViewWidthConstraint.constant = view.frame.size.width
         if let mediaView = mediaView {
@@ -49,45 +49,49 @@ class EntryDetailViewController: UIViewController {
     // MARK: -
     // MARK: Setup
     
-    private func setup()
-    {
+    private func setup() {
+        
         timestampLabel.text = "\(entry.createdAt!.timeAgoSimple) ago"
         captionLabel.text = entry.caption ?? ""
         
-        mediaContainerView.layer.masksToBounds = true
+        mediaContainerView.clipsToBounds = true
         
         setupMedia()
+        setupNavigationItem()
     }
     
-    private func setupMedia()
-    {
+    private func setupNavigationItem() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismiss")
+    }
+    
+    private func setupMedia() {
+        
         switch entry.typeMapped {
         case .Image:
             setupImage()
         case .Video:
             setupVideo()
+        case .Text:
+            // not working
+            imageViewAspectRatioConstraint.constant = 0
         default: break
         }
     }
     
-    private func setupImage()
-    {
+    private func setupImage() {
+        
         mediaView = PFImageView()
         mediaView!.contentMode = .ScaleAspectFill
         mediaView!.frame = mediaContainerView.bounds
-        mediaView!.layer.masksToBounds = true
         if let media = entry.media {
             (mediaView as! PFImageView).file = media
             (mediaView as! PFImageView).loadInBackground()
-        } else {
-            imageViewAspectRatioConstraint.constant = 0
         }
- 
         mediaContainerView.addSubview(mediaView!)
     }
     
-    private func setupVideo()
-    {
+    private func setupVideo() {
+        
         if let url = entry.media!.url {
             
             let asset = AVAsset(URL: NSURL(string: url)!)
@@ -107,8 +111,8 @@ class EntryDetailViewController: UIViewController {
     // MARK: -
     // MARK: User actions
     
-    @IBAction func closeButtonTapped(sender: AnyObject)
-    {
+    @objc private func dismiss() {
+        
         dismissViewControllerAnimated(true, completion: nil)
     }
     

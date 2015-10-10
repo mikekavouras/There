@@ -13,6 +13,7 @@ class MainStreamViewController: UIViewController,
     UICollectionViewDelegateFlowLayout,
     UICollectionViewDataSource,
     UICollectionViewDelegate,
+    UIViewControllerPreviewingDelegate,
 LocationManagerDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -43,6 +44,9 @@ LocationManagerDelegate {
     private func setup() {
         
         setupCollectionView()
+        if #available(iOS 9.0, *) {
+            registerForPreviewingWithDelegate(self, sourceView: collectionView)
+        }
     }
     
     private func setupCollectionView() {
@@ -107,6 +111,34 @@ LocationManagerDelegate {
         }
     }
     
+    // MARK: -
+    // MARK: View controller previewing
+    
+    
+    func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
+        showViewController(viewControllerToCommit, sender: self)
+    }
+    
+    func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        if #available(iOS 9.0, *) {
+            let collectionView = previewingContext.sourceView as! UICollectionView
+            let indexPath = collectionView.indexPathForItemAtPoint(location)
+            if let indexPath = indexPath {
+                if let cell = collectionView.cellForItemAtIndexPath(indexPath) {
+                    previewingContext.sourceRect = cell.frame
+                }
+                if let data = data {
+                    let viewController = storyboard?.instantiateViewControllerWithIdentifier("EntryDetailControllerIdentifier") as! EntryDetailViewController
+                    let entry = data[indexPath.row]
+                    viewController.entry = entry
+                    return viewController
+                }
+            }
+        }
+        
+
+        return UIViewController()
+    }
     
     // MARK: -
     // MARK: Collection view layout

@@ -40,7 +40,7 @@ class CreateEntryViewController: UIViewController,
     
     @IBOutlet weak var postToolbarBottomConstraint: NSLayoutConstraint!
     
-    lazy var entry: Entry = {
+    private lazy var entry: Entry = {
         let e = Entry()
         e.typeMapped = .Text
         return e
@@ -60,8 +60,23 @@ class CreateEntryViewController: UIViewController,
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
-        
         textView.becomeFirstResponder()
+    }
+    
+    @available(iOS 9.0, *)
+    func presentFromShortcutItem(shortcutItem: UIApplicationShortcutItem) {
+        switch shortcutItem.type {
+        case "com.mikekavouras.video":
+            showCamera(.Video)
+        case "com.mikekavouras.photo":
+            showCamera(.Photo)
+        default: break;
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
     }
     
     override func viewWillDisappear(animated: Bool) {

@@ -25,6 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         setupParse()
         
+        if #available(iOS 9.0, *) {
+            setupApplicationShortcuts()
+        }
+        
         return true
     }
     
@@ -34,8 +38,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         registerParseSubclasses()
         Parse.setApplicationId(ParseAPI.ApplicationID, clientKey: ParseAPI.ClientKey)
     }
+    
     private func registerParseSubclasses() {
         Entry.registerSubclass()
+    }
+    
+    private func setupApplicationShortcuts() {
+        if #available(iOS 9.0, *) {
+
+            let photoItem = UIMutableApplicationShortcutItem(type: "com.mikekavouras.photo", localizedTitle: "Add Photo", localizedSubtitle: nil, icon: nil, userInfo: nil)
+            let videoItem = UIMutableApplicationShortcutItem(type: "com.mikekavouras.video", localizedTitle: "Add Video", localizedSubtitle: nil, icon: nil, userInfo: nil)
+            let items = [photoItem, videoItem]
+
+            UIApplication.sharedApplication().shortcutItems = items
+        }
+        
+    }
+    
+    @available(iOS 9.0, *)
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewControllerWithIdentifier("CreateEntryControllerIdentifier") as! CreateEntryViewController
+        
+        let navController = UINavigationController(rootViewController: viewController)
+        window!.rootViewController!.presentViewController(navController, animated: false, completion: {
+            viewController.presentFromShortcutItem(shortcutItem)
+        })
+        
+        completionHandler(true)
+        
     }
 
 }

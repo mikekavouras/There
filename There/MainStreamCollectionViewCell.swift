@@ -12,7 +12,7 @@ import ParseUI
 
 class MainStreamCollectionViewCell: UICollectionViewCell {
     
-    var entry: Entry!{
+    var entry: Entry! {
         didSet {
             imageView.image = nil
             loadEntry()
@@ -23,19 +23,21 @@ class MainStreamCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var imageView: PFImageView!
     @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var labelContainerView: UIView!
     
-    override func awakeFromNib()
-    {
+    override func awakeFromNib() {
+        
         super.awakeFromNib()
         backgroundColor = UIColor.groupTableViewBackgroundColor()
     }
     
-    private func loadEntry()
-    {
+    private func loadEntry() {
+        
         timestampLabel.text = entry.createdAt?.timeAgoSimple
+        textLabel.text = entry.caption
+        textLabel.numberOfLines = entry.typeMapped == .Text ? 6 : 1
         imageView.file = entry.typeMapped == .Video ? entry.posterImage : entry.media
         imageView.loadInBackground()
-        textLabel.text = entry.caption ?? "" 
         iconImageView.image = entry.typeMapped.icon()
     }
 }
