@@ -28,7 +28,7 @@ class MainStreamCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         
         super.awakeFromNib()
-        backgroundColor = UIColor.groupTableViewBackgroundColor()
+        backgroundColor = UIColor.whiteColor()
     }
     
     private func loadEntry() {
