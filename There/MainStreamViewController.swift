@@ -45,7 +45,9 @@ LocationManagerDelegate {
         
         setupCollectionView()
         if #available(iOS 9.0, *) {
-            registerForPreviewingWithDelegate(self, sourceView: collectionView)
+            if traitCollection.forceTouchCapability == .Available {
+                registerForPreviewingWithDelegate(self, sourceView: collectionView)
+            }
         }
     }
     
@@ -111,15 +113,17 @@ LocationManagerDelegate {
         }
     }
     
+    
     // MARK: -
     // MARK: View controller previewing
     
-    
     func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
+        
         showViewController(viewControllerToCommit, sender: self)
     }
     
     func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
         if #available(iOS 9.0, *) {
             let collectionView = previewingContext.sourceView as! UICollectionView
             let indexPath = collectionView.indexPathForItemAtPoint(location)
@@ -139,6 +143,7 @@ LocationManagerDelegate {
 
         return UIViewController()
     }
+    
     
     // MARK: -
     // MARK: Collection view layout

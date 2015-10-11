@@ -26,7 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupParse()
         
         if #available(iOS 9.0, *) {
-            setupApplicationShortcuts()
+//            This works but not well.
+//            setupApplicationShortcuts()
         }
         
         return true

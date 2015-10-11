@@ -41,6 +41,7 @@ class EntryDetailViewController: UIViewController {
         
         contentViewWidthConstraint.constant = view.frame.size.width
         if let mediaView = mediaView {
+            print(mediaContainerView.bounds)
             mediaView.frame = mediaContainerView.bounds
         }
     }
@@ -61,6 +62,7 @@ class EntryDetailViewController: UIViewController {
     }
     
     private func setupNavigationItem() {
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismiss")
     }
     
@@ -76,12 +78,15 @@ class EntryDetailViewController: UIViewController {
             imageViewAspectRatioConstraint.constant = 0
         default: break
         }
+        
+        view.setNeedsDisplay()
+        view.layoutIfNeeded()
     }
     
     private func setupImage() {
         
         mediaView = PFImageView()
-        mediaView!.contentMode = .ScaleAspectFill
+        mediaView!.contentMode = .ScaleAspectFit
         mediaView!.frame = mediaContainerView.bounds
         if let media = entry.media {
             (mediaView as! PFImageView).file = media
