@@ -14,16 +14,19 @@ class MainStreamViewController: UIViewController,
     UICollectionViewDataSource,
     UICollectionViewDelegate,
     UIViewControllerPreviewingDelegate,
-LocationManagerDelegate {
+    LocationManagerDelegate,
+    UploadQueueDelegate {
     
+    @IBOutlet weak var statusView: UploadStatusView!
     @IBOutlet weak var collectionView: UICollectionView!
+    
     var data: [Entry]?
     
     
     // MARK: -
     // MARK: Constants
     
-    let NUMBER_OF_COLUMNS: CGFloat = 2.0
+    let NUMBER_OF_COLUMNS: CGFloat = 3.0
     
     
     // MARK: -
@@ -35,6 +38,8 @@ LocationManagerDelegate {
         
         setup()
         startLocationUpdates()
+        
+        UploadQueue.sharedQueue.delegate = self
     }
     
     
@@ -94,21 +99,13 @@ LocationManagerDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if let navController = segue.destinationViewController as? UINavigationController {
-            if let viewController = navController.viewControllers[0] as? CreateEntryViewController {
-                viewController.onCreateHandler = { (entry: Entry) -> Void in
-                    let loc = entry.location!
-                    let location = CLLocation(latitude: loc.latitude, longitude: loc.longitude)
-                    self.refreshContent(location)
+        if let viewController = segue.destinationViewController as? EntryDetailViewController {
+            if let data = data {
+                if let indexPaths = collectionView.indexPathsForSelectedItems(),
+                    indexPath = indexPaths.first {
+                        viewController.entry = data[indexPath.row]
                 }
-            } else if let viewController = navController.viewControllers[0] as? EntryDetailViewController {
-                if let data = data {
-                    if let indexPaths = collectionView.indexPathsForSelectedItems(),
-                        indexPath = indexPaths.first {
-                            viewController.entry = data[indexPath.row]
-                    }
-                    
-                }
+                
             }
         }
     }
@@ -119,7 +116,7 @@ LocationManagerDelegate {
     
     func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
         
-        showViewController(viewControllerToCommit, sender: self)
+        presentViewController(viewControllerToCommit, animated: true, completion: nil)
     }
     
     func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
@@ -150,7 +147,7 @@ LocationManagerDelegate {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        let width = view.frame.size.width / NUMBER_OF_COLUMNS - 0.5
+        let width = view.frame.size.width / NUMBER_OF_COLUMNS
         return CGSizeMake(width, width)
     }
     
@@ -161,12 +158,12 @@ LocationManagerDelegate {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
         
-        return 1.0
+        return 0.0
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         
-        return 1.0
+        return 0.0
     }
     
     
@@ -193,6 +190,8 @@ LocationManagerDelegate {
         if let data = data {
             let entry = data[indexPath.row]
             cell.entry = entry
+            cell.imageView.file = entry.typeMapped == .Video ? entry.posterImage : entry.media
+            cell.imageView.loadInBackground()
         }
         
         return cell
@@ -205,6 +204,27 @@ LocationManagerDelegate {
     func locationManagerDidUpdateLocations(manager: LocationManager) {
         
         refreshContent(manager.location!)
+    }
+    
+    
+    // MARK: -
+    // MARK: Upload queue delegate
+    
+    func uploadQueueWillProcessUpload(queue: UploadQueue) {
+        print("will process")
+        let uploadOrUploads = queue.uploads.count == 1 ? "upload" : "uploads"
+        statusView.statusLabel.text = "Processing \(queue.uploads.count) \(uploadOrUploads)"
+        statusView.show()
+    }
+    
+    func uploadQueueDidProcessUpload(queue: UploadQueue) {
+        print("did process")
+        statusView.statusLabel.text = "Processing \(queue.uploads.count) uploads"
+    }
+    
+    func uploadQueueDidFinishProcessingUploads(queue: UploadQueue) {
+        statusView.statusLabel.text = "Uploaded :)"
+        statusView.hide()
     }
 }
 

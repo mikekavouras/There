@@ -34,7 +34,7 @@ class CreateEntryViewController: UIViewController,
     @IBOutlet weak var audioButton: DesignableButton!
     @IBOutlet weak var submitButton: DesignableButton!
     
-    var onCreateHandler: ((entry: Entry) -> Void)?
+    @IBOutlet weak var saveToCameraRollToggle: SelectableCircleView!
     
     @IBOutlet weak var textView: UITextView!
     
@@ -167,14 +167,16 @@ class CreateEntryViewController: UIViewController,
             if type == "public.image" {
                 if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
                     let imageData = UIImageJPEGRepresentation(image, 0.8)!
-                    entry.media = PFFile(data: imageData)
+                    entry.media = PFFile(data: imageData, contentType: "image/jpeg")
                     entry.typeMapped = .Image
+                    entry.image = image
                 }
             } else if type == "public.movie" {
                 if let file = info[UIImagePickerControllerMediaURL] as? NSURL {
                     if let videoData = NSData(contentsOfURL: file) {
                         if let image = file.thumbnailImagePreview() {
-                            entry.posterImage = PFFile(data: UIImagePNGRepresentation(image)!)
+                            entry.videoURL = file
+                            entry.posterImage = PFFile(data: UIImagePNGRepresentation(image)!, contentType: "image/jpeg")
                             entry.media = PFFile(data: videoData, contentType: "video/mp4")
                             entry.typeMapped = .Video
                         }
@@ -196,20 +198,20 @@ class CreateEntryViewController: UIViewController,
     // MARK: Declarative
     
     private func saveEntry() {
+        
         if let location = LocationManager.sharedManager.location {
             if location.horizontalAccuracy <= MAX_DISTANCE_FILTER {
                 entry.caption = textView.text
                 entry.location = PFGeoPoint(location: LocationManager.sharedManager.location)
                 if entry.isValid {
-                    entry.saveInBackgroundWithBlock { (finished: Bool, error: NSError?) -> Void in
-                        if let handler = self.onCreateHandler {
-                            handler(entry: self.entry)
-                        }
-                    }
+                    
+                    entry.saveLocal = saveToCameraRollToggle.selected
+                    UploadQueue.sharedQueue.addUpload(Upload(entry: entry))
+                    
+                    dismiss()
                 } else {
-                    throwValidAlert()
+                    throwInvalidAlert()
                 }
-                dismiss()
             } else {
                 throwLocationAlert()
             }
@@ -243,7 +245,7 @@ class CreateEntryViewController: UIViewController,
         presentViewController(alert, animated: true, completion: nil)
     }
     
-    private func throwValidAlert() {
+    private func throwInvalidAlert() {
         
         let alert = UIAlertController(title: "Entry", message: "You need to add media or text", preferredStyle: .Alert)
         let action = UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil)

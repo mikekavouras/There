@@ -36,8 +36,6 @@ class MainStreamCollectionViewCell: UICollectionViewCell {
         timestampLabel.text = entry.createdAt?.timeAgoSimple
         textLabel.text = entry.caption
         textLabel.numberOfLines = entry.typeMapped == .Text ? 6 : 1
-        imageView.file = entry.typeMapped == .Video ? entry.posterImage : entry.media
-        imageView.loadInBackground()
         iconImageView.image = entry.typeMapped.icon()
     }
 }

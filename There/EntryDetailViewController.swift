@@ -14,7 +14,7 @@ import AVFoundation
 class EntryDetailViewController: UIViewController {
 
     var entry: Entry!
-    var mediaView: UIView?
+    var mediaView: PFImageView?
     var videoPlayer: AVPlayer?
     
     @IBOutlet weak var captionLabel: UILabel!
@@ -41,9 +41,12 @@ class EntryDetailViewController: UIViewController {
         
         contentViewWidthConstraint.constant = view.frame.size.width
         if let mediaView = mediaView {
-            print(mediaContainerView.bounds)
             mediaView.frame = mediaContainerView.bounds
         }
+    }
+    
+    deinit {
+//        videoPlayer?.currentItem?.removeObserver(self, forKeyPath: "playbackBufferFull")
     }
     
     
@@ -74,8 +77,7 @@ class EntryDetailViewController: UIViewController {
         case .Video:
             setupVideo()
         case .Text:
-            // not working
-            imageViewAspectRatioConstraint.constant = 0
+            imageViewAspectRatioConstraint.constant = 0 // not working
         default: break
         }
         
@@ -86,37 +88,74 @@ class EntryDetailViewController: UIViewController {
     private func setupImage() {
         
         mediaView = PFImageView()
-        mediaView!.contentMode = .ScaleAspectFill
-        mediaView!.frame = mediaContainerView.bounds
+        mediaView!.contentMode = .ScaleAspectFit
+        
         if let media = entry.media {
-            (mediaView as! PFImageView).file = media
-            (mediaView as! PFImageView).loadInBackground()
+            mediaView!.file = media
+            mediaView!.loadInBackground()
         }
         mediaContainerView.addSubview(mediaView!)
     }
     
     private func setupVideo() {
         
-        if let url = entry.media!.url {
-            
-            let asset = AVAsset(URL: NSURL(string: url)!)
-            let playerItem = AVPlayerItem(asset: asset)
-            videoPlayer = AVPlayer(playerItem: playerItem)
-            videoPlayer!.play()
-            videoPlayer!.actionAtItemEnd = .None
-            
-            let layer = AVPlayerLayer(player: videoPlayer!)
-            layer.frame = mediaContainerView.bounds
-            layer.videoGravity = AVLayerVideoGravityResizeAspectFill
-            mediaContainerView.layer.addSublayer(layer)
+        
+        if let media = entry.media,
+            posterImage = entry.posterImage,
+            urlString = media.url,
+            url = NSURL(string: urlString) {
+                
+                // display the poster image
+                mediaView = PFImageView()
+                mediaView!.contentMode = .ScaleAspectFill
+                mediaView!.file = posterImage
+                mediaView!.loadInBackground()
+                mediaView!.frame = mediaContainerView.bounds
+                mediaContainerView.addSubview(mediaView!)
+    //                
+                // create the video player
+                let asset = AVAsset(URL: url)
+                let playerItem = AVPlayerItem(asset: asset)
+                videoPlayer = AVPlayer(playerItem: playerItem)
+
+                videoPlayer!.actionAtItemEnd = .None
+                videoPlayer!.play()
+                
+    //            videoPlayer?.currentItem?.addObserver(self, forKeyPath: "playbackBufferFull", options: .New, context: nil)
+
+                
+                // add the video to the UI
+                let layer = AVPlayerLayer(player: videoPlayer!)
+                layer.frame = mediaContainerView.bounds
+                layer.videoGravity = AVLayerVideoGravityResizeAspectFill
+                mediaContainerView.layer.addSublayer(layer)
         }
+    }
+    
+    
+    // MARK: -
+    // MARK: KVO
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        
+        if let item = videoPlayer!.currentItem {
+            if let object = object {
+                if item == object as! NSObject {
+                    if keyPath == "playbackBufferFull" {
+                        videoPlayer!.play()
+                    }
+                }
+            }
+        }
+        
+        super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
     }
     
     
     // MARK: -
     // MARK: User actions
     
-    @objc private func dismiss() {
+    @IBAction func doneButtonTapped(sender: AnyObject) {
         
         dismissViewControllerAnimated(true, completion: nil)
     }

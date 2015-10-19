@@ -12,15 +12,21 @@
 		8D1277E51BC0B73E00E0867D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1277E41BC0B73E00E0867D /* LocationManager.swift */; };
 		8D12807A1BBF540200615BEA /* CreateEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1280791BBF540200615BEA /* CreateEntryViewController.swift */; };
 		8D1280841BBF552B00615BEA /* UIViewController+Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1280831BBF552B00615BEA /* UIViewController+Storyboard.swift */; };
+		8D26D7F21BCB0E4000DCD230 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D26D7F11BCB0E4000DCD230 /* VideoPlayer.swift */; };
 		8D3C07CC1BC7577C0032B5D0 /* NSURL+ImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C07CB1BC7577C0032B5D0 /* NSURL+ImageGenerator.swift */; };
 		8D3C07CE1BC776430032B5D0 /* UIColor+EntryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C07CD1BC776430032B5D0 /* UIColor+EntryType.swift */; };
 		8D40688D1BC5CE5E00A1E698 /* EntryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40688C1BC5CE5E00A1E698 /* EntryDetailViewController.swift */; };
+		8D5269FA1BD3F20B0000C723 /* ALAssetsLibrary+CustomAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5269F91BD3F20B0000C723 /* ALAssetsLibrary+CustomAlbum.swift */; settings = {ASSET_TAGS = (); }; };
 		8D5ED2ED1BC42A9C001BC138 /* UIDevice+Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5ED2EC1BC42A9C001BC138 /* UIDevice+Camera.swift */; };
+		8D72DB481BD2E677002B548F /* SelectableCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72DB471BD2E677002B548F /* SelectableCircleView.swift */; settings = {ASSET_TAGS = (); }; };
 		8D92D4691BC7E8C200D0F8EA /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D92D4681BC7E8C200D0F8EA /* NSDate+Extension.swift */; };
 		8D9561A01BC56ED3000AD2C1 /* MainStreamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D95619E1BC56ED3000AD2C1 /* MainStreamCollectionViewCell.swift */; };
 		8DBF4C531BC41D4D00E4082B /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBF4C521BC41D4D00E4082B /* DesignableButton.swift */; };
 		8DBF4C551BC41F2F00E4082B /* HalfPointLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBF4C541BC41F2F00E4082B /* HalfPointLineView.swift */; };
 		8DE6B56F1BC846240049380F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6B56E1BC846240049380F /* SettingsTableViewController.swift */; };
+		8DF403F81BD5228D000E1130 /* UploadQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF403F71BD5228D000E1130 /* UploadQueue.swift */; settings = {ASSET_TAGS = (); }; };
+		8DF403FA1BD522A1000E1130 /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF403F91BD522A1000E1130 /* Upload.swift */; settings = {ASSET_TAGS = (); }; };
+		8DF403FC1BD52D29000E1130 /* UploadStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF403FB1BD52D29000E1130 /* UploadStatusView.swift */; settings = {ASSET_TAGS = (); }; };
 		8DFD90C11BBE35B500238DCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD90C01BBE35B500238DCD /* AppDelegate.swift */; };
 		8DFD90C61BBE35B500238DCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DFD90C41BBE35B500238DCD /* Main.storyboard */; };
 		8DFD90CB1BBE35B500238DCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DFD90CA1BBE35B500238DCD /* Assets.xcassets */; };
@@ -60,19 +66,25 @@
 
 /* Begin PBXFileReference section */
 		308076A500266620036212D4 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D09A09E1BC781920091EB41 /* NSDateTimeAgo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NSDateTimeAgo.bundle; sourceTree = "<group>"; };
+		8D09A09E1BC781920091EB41 /* NSDateTimeAgo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NSDateTimeAgo.bundle; path = There/NSDateTimeAgo.bundle; sourceTree = "<group>"; };
 		8D1277E41BC0B73E00E0867D /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		8D1280791BBF540200615BEA /* CreateEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEntryViewController.swift; sourceTree = "<group>"; };
 		8D1280831BBF552B00615BEA /* UIViewController+Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Storyboard.swift"; sourceTree = "<group>"; };
+		8D26D7F11BCB0E4000DCD230 /* VideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
 		8D3C07CB1BC7577C0032B5D0 /* NSURL+ImageGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+ImageGenerator.swift"; sourceTree = "<group>"; };
 		8D3C07CD1BC776430032B5D0 /* UIColor+EntryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+EntryType.swift"; sourceTree = "<group>"; };
 		8D40688C1BC5CE5E00A1E698 /* EntryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryDetailViewController.swift; sourceTree = "<group>"; };
+		8D5269F91BD3F20B0000C723 /* ALAssetsLibrary+CustomAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ALAssetsLibrary+CustomAlbum.swift"; sourceTree = "<group>"; };
 		8D5ED2EC1BC42A9C001BC138 /* UIDevice+Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Camera.swift"; sourceTree = "<group>"; };
+		8D72DB471BD2E677002B548F /* SelectableCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableCircleView.swift; sourceTree = "<group>"; };
 		8D92D4681BC7E8C200D0F8EA /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
 		8D95619E1BC56ED3000AD2C1 /* MainStreamCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainStreamCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DBF4C521BC41D4D00E4082B /* DesignableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
 		8DBF4C541BC41F2F00E4082B /* HalfPointLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfPointLineView.swift; sourceTree = "<group>"; };
 		8DE6B56E1BC846240049380F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		8DF403F71BD5228D000E1130 /* UploadQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadQueue.swift; sourceTree = "<group>"; };
+		8DF403F91BD522A1000E1130 /* Upload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Upload.swift; sourceTree = "<group>"; };
+		8DF403FB1BD52D29000E1130 /* UploadStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadStatusView.swift; sourceTree = "<group>"; };
 		8DFD90BD1BBE35B500238DCD /* There.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = There.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFD90C01BBE35B500238DCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DFD90C51BBE35B500238DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -142,6 +154,7 @@
 			children = (
 				8DFD91031BBE37A600238DCD /* libsqlite3.dylib */,
 				8DFD91011BBE378200238DCD /* libz.1.dylib */,
+				8D09A09E1BC781920091EB41 /* NSDateTimeAgo.bundle */,
 				8DFD90FF1BBE36F100238DCD /* SystemConfiguration.framework */,
 				8DFD90FD1BBE36E800238DCD /* StoreKit.framework */,
 				8DFD90FB1BBE36E000238DCD /* Security.framework */,
@@ -160,6 +173,8 @@
 			children = (
 				8DFD91061BBE3CAE00238DCD /* Entry.swift */,
 				8D1277E41BC0B73E00E0867D /* LocationManager.swift */,
+				8DF403F71BD5228D000E1130 /* UploadQueue.swift */,
+				8DF403F91BD522A1000E1130 /* Upload.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -197,6 +212,8 @@
 			children = (
 				8DBF4C521BC41D4D00E4082B /* DesignableButton.swift */,
 				8DBF4C541BC41F2F00E4082B /* HalfPointLineView.swift */,
+				8D72DB471BD2E677002B548F /* SelectableCircleView.swift */,
+				8DF403FB1BD52D29000E1130 /* UploadStatusView.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -209,6 +226,7 @@
 				8D3C07CB1BC7577C0032B5D0 /* NSURL+ImageGenerator.swift */,
 				8D3C07CD1BC776430032B5D0 /* UIColor+EntryType.swift */,
 				8D92D4681BC7E8C200D0F8EA /* NSDate+Extension.swift */,
+				8D5269F91BD3F20B0000C723 /* ALAssetsLibrary+CustomAlbum.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -246,7 +264,7 @@
 				8DBF4C571BC4225700E4082B /* Extensions */,
 				8DFD90CA1BBE35B500238DCD /* Assets.xcassets */,
 				8DFD90CC1BBE35B500238DCD /* LaunchScreen.storyboard */,
-				8D09A09E1BC781920091EB41 /* NSDateTimeAgo.bundle */,
+				8D26D7F11BCB0E4000DCD230 /* VideoPlayer.swift */,
 				8DFD90CF1BBE35B500238DCD /* Info.plist */,
 			);
 			path = There;
@@ -462,6 +480,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DF403F81BD5228D000E1130 /* UploadQueue.swift in Sources */,
+				8D26D7F21BCB0E4000DCD230 /* VideoPlayer.swift in Sources */,
 				8DBF4C531BC41D4D00E4082B /* DesignableButton.swift in Sources */,
 				8DFD91071BBE3CAE00238DCD /* Entry.swift in Sources */,
 				8DBF4C551BC41F2F00E4082B /* HalfPointLineView.swift in Sources */,
@@ -469,14 +489,18 @@
 				8DFD910F1BBE447C00238DCD /* MainStreamViewController.swift in Sources */,
 				8D9561A01BC56ED3000AD2C1 /* MainStreamCollectionViewCell.swift in Sources */,
 				8D92D4691BC7E8C200D0F8EA /* NSDate+Extension.swift in Sources */,
+				8D5269FA1BD3F20B0000C723 /* ALAssetsLibrary+CustomAlbum.swift in Sources */,
 				8D3C07CE1BC776430032B5D0 /* UIColor+EntryType.swift in Sources */,
 				8D40688D1BC5CE5E00A1E698 /* EntryDetailViewController.swift in Sources */,
 				8D1277E51BC0B73E00E0867D /* LocationManager.swift in Sources */,
 				8D1280841BBF552B00615BEA /* UIViewController+Storyboard.swift in Sources */,
 				8DE6B56F1BC846240049380F /* SettingsTableViewController.swift in Sources */,
 				8DFD90C11BBE35B500238DCD /* AppDelegate.swift in Sources */,
+				8DF403FA1BD522A1000E1130 /* Upload.swift in Sources */,
 				8D3C07CC1BC7577C0032B5D0 /* NSURL+ImageGenerator.swift in Sources */,
 				8D12807A1BBF540200615BEA /* CreateEntryViewController.swift in Sources */,
+				8DF403FC1BD52D29000E1130 /* UploadStatusView.swift in Sources */,
+				8D72DB481BD2E677002B548F /* SelectableCircleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

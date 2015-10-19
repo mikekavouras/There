@@ -8,6 +8,7 @@
 
 import Foundation
 import Parse
+import AssetsLibrary
 
 enum EntryType: String {
     case Text = "text"
@@ -38,6 +39,11 @@ class Entry : PFObject, PFSubclassing {
     @NSManaged var caption: String?
     @NSManaged var posterImage: PFFile?
     
+    // for saving to camera roll
+    var image: UIImage?
+    var videoURL: NSURL?
+    var saveLocal = false
+    
     var isValid: Bool {
         return (caption != nil && caption != "") || media != nil
     }
@@ -48,16 +54,37 @@ class Entry : PFObject, PFSubclassing {
     }
     
     class func parseClassName() -> String {
+        
         return "Entry"
     }
     
     class func fetchAtLocation(location: CLLocation, completion: ([Entry]?) -> Void) {
+        
         let query = PFQuery(className: self.parseClassName())
         query.limit = 30
         query.orderByDescending("createdAt")
         query.whereKey("location", nearGeoPoint: PFGeoPoint(location: location), withinKilometers: MAX_DISTANCE_FILTER / 1000.0)
+        
         query.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
             completion(results as? [Entry])
+        }
+    }
+    
+    func saveMediaToCameraRoll() {
+        switch typeMapped {
+        case .Image:
+            ALAssetsLibrary().saveImage(image!, toAlbum: "There", withCompletionBlock: { (error: NSError?) -> () in
+                if let _ = error {
+                    print("error saving to camera roll")
+                }
+            })
+        case .Video:
+            ALAssetsLibrary().saveVideo(videoURL!, toAlbum: "There", withCompletionBlock: { (error: NSError?) -> () in
+                if let _ = error {
+                    print("error saving to camera roll")
+                }
+            })
+        default: break
         }
     }
     
