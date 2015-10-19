@@ -142,27 +142,35 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="0.0"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bs6-jt-RLy">
-                                        <rect key="frame" x="15" y="-10.5" width="570" height="20.5"/>
+                                        <rect key="frame" x="15" y="-9" width="570" height="18"/>
                                         <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pf1-Wc-8rS" customClass="HalfPointLineView" customModule="There" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="-1" width="600" height="1"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.83443813131313127" green="0.83443813131313127" blue="0.83443813131313127" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="k73-fy-kQV"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="heightConstraint" destination="k73-fy-kQV" id="j6b-Yn-Kj0"/>
+                                        </connections>
+                                    </view>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Pf1-Wc-8rS" secondAttribute="bottom" id="0DI-Fe-LhH"/>
+                                    <constraint firstAttribute="trailing" secondItem="Pf1-Wc-8rS" secondAttribute="trailing" id="14S-cW-pt7"/>
                                     <constraint firstAttribute="trailing" secondItem="Bs6-jt-RLy" secondAttribute="trailing" constant="15" id="Uai-Uk-GxP"/>
                                     <constraint firstAttribute="height" id="YTw-wW-esu"/>
                                     <constraint firstItem="Bs6-jt-RLy" firstAttribute="leading" secondItem="ZMn-C7-Oxa" secondAttribute="leading" constant="15" id="dL2-1i-48h"/>
-                                    <constraint firstItem="Bs6-jt-RLy" firstAttribute="centerX" secondItem="ZMn-C7-Oxa" secondAttribute="centerX" id="gbN-8H-xjQ"/>
+                                    <constraint firstItem="Pf1-Wc-8rS" firstAttribute="leading" secondItem="ZMn-C7-Oxa" secondAttribute="leading" id="irw-CU-SKd"/>
                                     <constraint firstItem="Bs6-jt-RLy" firstAttribute="centerY" secondItem="ZMn-C7-Oxa" secondAttribute="centerY" id="xvW-Ee-jXY"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="gbN-8H-xjQ"/>
-                                    </mask>
-                                </variation>
                                 <connections>
                                     <outlet property="heightConstraint" destination="YTw-wW-esu" id="9h8-F2-3Sj"/>
                                     <outlet property="statusLabel" destination="Bs6-jt-RLy" id="23Q-XT-5xu"/>

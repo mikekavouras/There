@@ -220,11 +220,17 @@ class MainStreamViewController: UIViewController,
     func uploadQueueDidProcessUpload(queue: UploadQueue) {
         print("did process")
         statusView.statusLabel.text = "Processing \(queue.uploads.count) uploads"
+        if let location = LocationManager.sharedManager.location {
+           refreshContent(location)
+        }
     }
     
     func uploadQueueDidFinishProcessingUploads(queue: UploadQueue) {
         statusView.statusLabel.text = "Uploaded :)"
         statusView.hide()
+        if let location = LocationManager.sharedManager.location {
+           refreshContent(location)
+        }
     }
 }
 
