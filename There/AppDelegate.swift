@@ -24,11 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         setupParse()
-        
-        if #available(iOS 9.0, *) {
-//            This works but not well.
-//            setupApplicationShortcuts()
-        }
+        setupApplicationShortcuts()
         
         return true
     }

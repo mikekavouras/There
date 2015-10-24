@@ -39,6 +39,7 @@ class MainStreamViewController: UIViewController,
         setup()
         startLocationUpdates()
         
+        // questionable
         UploadQueue.sharedQueue.delegate = self
     }
     
@@ -115,8 +116,10 @@ class MainStreamViewController: UIViewController,
     // MARK: View controller previewing
     
     func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
-        
-        presentViewController(viewControllerToCommit, animated: true, completion: nil)
+        if let viewController = viewControllerToCommit as? EntryDetailViewController {
+            viewController.peeking = false
+            presentViewController(viewControllerToCommit, animated: true, completion: nil)
+        }
     }
     
     func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
@@ -127,12 +130,13 @@ class MainStreamViewController: UIViewController,
             if let indexPath = indexPath {
                 if let cell = collectionView.cellForItemAtIndexPath(indexPath) {
                     previewingContext.sourceRect = cell.frame
-                }
-                if let data = data {
-                    let viewController = storyboard?.instantiateViewControllerWithIdentifier("EntryDetailControllerIdentifier") as! EntryDetailViewController
-                    let entry = data[indexPath.row]
-                    viewController.entry = entry
-                    return viewController
+                    if let data = data {
+                        let viewController = storyboard?.instantiateViewControllerWithIdentifier("EntryDetailControllerIdentifier") as! EntryDetailViewController
+                        let entry = data[indexPath.row]
+                        viewController.entry = entry
+                        viewController.peeking = true
+                        return viewController
+                    }
                 }
             }
         }
