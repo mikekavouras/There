@@ -6,12 +6,11 @@
 //  Copyright © 2015 Michael Kavouras. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol UploadQueueDelegate: class {
     func uploadQueueWillProcessUpload(queue: UploadQueue)
     func uploadQueueDidProcessUpload(queue: UploadQueue)
-    func uploadQueueDidFinishProcessingUploads(queue: UploadQueue)
 }
 
 class UploadQueue: UploadDelegate {
@@ -20,48 +19,76 @@ class UploadQueue: UploadDelegate {
     
     weak var delegate: UploadQueueDelegate?
     
-    var uploads = [Upload]() {
+    var isEmpty: Bool {
+        return queue.count == 0
+    }
+    
+    var description: String {
+        switch queue.count {
+        case 0:
+            return "Processing 0 uploads"
+        case 1:
+            return "Processing 1 upload"
+        default:
+            return "Processing \(queue.count) uploads"
+        }
+    }
+    
+    private var queue = [Upload]() {
         didSet {
-            if uploads.count == 0 {
+            if oldValue.count > queue.count {
                 delegate?.uploadQueueDidProcessUpload(self)
-                delegate?.uploadQueueDidFinishProcessingUploads(self)
+                
+                // If the queue isn't empty, begin processing the next item
+                if !isEmpty {
+                    queue.first!.process()
+                }
             } else {
-                if oldValue.count > uploads.count {
-                    delegate?.uploadQueueDidProcessUpload(self)
-                } else {
-                    delegate?.uploadQueueWillProcessUpload(self)
+                delegate?.uploadQueueWillProcessUpload(self)
+                
+                // Process the item immediately if it's the only one in the queue
+                if queue.count == 1 {
+                    queue.first!.process()
                 }
             }
         }
     }
     
-    func addUpload(upload: Upload) {
-        upload.delegate = self
-        uploads.append(upload)
-        upload.process()
+    func addItem(item: Upload) {
+        item.delegate = self
+        queue.append(item)
     }
     
-    func uploadDidBeginProcessing(upload: Upload) {
-        
-    }
-    
-    func uploadDidFinishProcessing(upload: Upload) {
-        
+    private func removeItem(upload: Upload) {
         var index = -1
-        for (i, u) in uploads.enumerate() {
+        for (i, u) in queue.enumerate() {
             if u == upload {
                 index = i
             }
         }
         
         if index != -1 {
-            uploads.removeAtIndex(index)
+            queue.removeAtIndex(index)
         }
+    }
+    
+    // MARK: -
+    // MARK: Upload delegate
+    
+    func uploadDidBeginProcessing(upload: Upload) {
+        print("begin upload")
+    }
+    
+    func uploadDidFinishProcessing(upload: Upload) {
+        print("finished upload")
         
+        removeItem(upload)
     }
     
     func uploadDidFailToProcess(upload: Upload) {
-        // handle error
+        
+        // TODO: Handle Error
+        print("error uploading")
     }
     
 }

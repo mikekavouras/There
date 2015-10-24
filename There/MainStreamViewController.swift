@@ -215,25 +215,23 @@ class MainStreamViewController: UIViewController,
     // MARK: Upload queue delegate
     
     func uploadQueueWillProcessUpload(queue: UploadQueue) {
-        print("will process")
-        let uploadOrUploads = queue.uploads.count == 1 ? "upload" : "uploads"
-        statusView.statusLabel.text = "Processing \(queue.uploads.count) \(uploadOrUploads)"
+        
+        statusView.statusLabel.text = queue.description
+        
         statusView.show()
     }
     
     func uploadQueueDidProcessUpload(queue: UploadQueue) {
-        print("did process")
-        statusView.statusLabel.text = "Processing \(queue.uploads.count) uploads"
+        
+        statusView.statusLabel.text = queue.description
+        
         if let location = LocationManager.sharedManager.location {
            refreshContent(location)
         }
-    }
-    
-    func uploadQueueDidFinishProcessingUploads(queue: UploadQueue) {
-        statusView.statusLabel.text = "Uploaded :)"
-        statusView.hide()
-        if let location = LocationManager.sharedManager.location {
-           refreshContent(location)
+        
+        if queue.isEmpty {
+            statusView.statusLabel.text = "Uploaded :)"
+            statusView.hide()
         }
     }
 }

@@ -63,17 +63,6 @@ class CreateEntryViewController: UIViewController,
         textView.becomeFirstResponder()
     }
     
-    @available(iOS 9.0, *)
-    func presentFromShortcutItem(shortcutItem: UIApplicationShortcutItem) {
-        switch shortcutItem.type {
-        case "com.mikekavouras.video":
-            showCamera(.Video)
-        case "com.mikekavouras.photo":
-            showCamera(.Photo)
-        default: break;
-        }
-    }
-    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -206,7 +195,7 @@ class CreateEntryViewController: UIViewController,
                 if entry.isValid {
                     
                     entry.saveLocal = saveToCameraRollToggle.selected
-                    UploadQueue.sharedQueue.addUpload(Upload(entry: entry))
+                    UploadQueue.sharedQueue.addItem(Upload(entry: entry))
                     
                     dismiss()
                 } else {

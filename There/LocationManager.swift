@@ -50,20 +50,24 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }()
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
-            
-            successfulLocationFoundTimer?.invalidate()
-            successfulLocationFoundTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "locationTimerFired:", userInfo: nil, repeats: false)
-            
-            if let l = latestLocation {
-                if location.horizontalAccuracy <= l.horizontalAccuracy {
-                    latestLocation = location
-                }
-            } else {
+        
+        // make sure we have a location
+        guard let location = locations.first else { return }
+        
+        // make sure the location isn't stale
+        guard abs(location.timestamp.timeIntervalSinceNow) <= 3 else { return }
+        
+        successfulLocationFoundTimer?.invalidate()
+        successfulLocationFoundTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "locationTimerFired:", userInfo: nil, repeats: false)
+        
+        if let latest = latestLocation {
+            if location.horizontalAccuracy <= latest.horizontalAccuracy {
                 latestLocation = location
             }
-            
+        } else {
+            latestLocation = location
         }
+        
     }
     
     @objc private func locationTimerFired(timer: NSTimer) {
@@ -77,7 +81,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
             }
         } else {
             if let previousLocation = previousLocation {
-                if previousLocation.distanceFromLocation(latestLocation!) <= DISTANCE_FILTER  {
+                if previousLocation.distanceFromLocation(latestLocation!) >= DISTANCE_FILTER  {
                     delegate?.locationManagerDidUpdateLocations(self)
                 }
             } else {

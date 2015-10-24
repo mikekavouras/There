@@ -16,6 +16,14 @@ struct ParseAPI {
     static let ClientKey = "2xgmdMbksrMA7Rj3l2WjU7LtQ3oYZzsy780q9zmO"
 }
 
+struct ShortcutItem {
+    static let NewEntry = "com.mikekavouras.There.NewEntry"
+}
+
+struct ImageAsset {
+    static let NewDraft = "compose"
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -43,9 +51,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupApplicationShortcuts() {
         if #available(iOS 9.0, *) {
 
-            let photoItem = UIMutableApplicationShortcutItem(type: "com.mikekavouras.photo", localizedTitle: "Add Photo", localizedSubtitle: nil, icon: nil, userInfo: nil)
-            let videoItem = UIMutableApplicationShortcutItem(type: "com.mikekavouras.video", localizedTitle: "Add Video", localizedSubtitle: nil, icon: nil, userInfo: nil)
-            let items = [photoItem, videoItem]
+            let icon = UIApplicationShortcutIcon(templateImageName: ImageAsset.NewDraft)
+            let entryItem = UIMutableApplicationShortcutItem(type: ShortcutItem.NewEntry, localizedTitle: "New Entry", localizedSubtitle: nil, icon: icon, userInfo: nil)
+            
+
+            let items = [entryItem]
 
             UIApplication.sharedApplication().shortcutItems = items
         }
@@ -59,12 +69,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let viewController = storyboard.instantiateViewControllerWithIdentifier("CreateEntryControllerIdentifier") as! CreateEntryViewController
         
         let navController = UINavigationController(rootViewController: viewController)
-        window!.rootViewController!.presentViewController(navController, animated: false, completion: {
-            viewController.presentFromShortcutItem(shortcutItem)
-        })
+        window!.rootViewController!.presentViewController(navController, animated: false, completion: nil)
         
         completionHandler(true)
-        
     }
 
 }
