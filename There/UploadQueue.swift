@@ -73,13 +73,10 @@ class UploadQueue: UploadDelegate {
     }
     
     private func processNextItem() {
-        if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
-            appDelegate.addFiniteBackgroundTask({ (identifier: UIBackgroundTaskIdentifier) -> () in
-                self.queue.first!.process {
-                    UIApplication.sharedApplication().endBackgroundTask(identifier)
-                    print("finished background task")
-                }
-            })
+        let identifier = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler(nil)
+        self.queue.first!.process {
+            print("finished background task")
+            UIApplication.sharedApplication().endBackgroundTask(identifier)
         }
     }
     

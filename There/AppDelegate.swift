@@ -36,15 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-    
-    func addFiniteBackgroundTask(task: (UIBackgroundTaskIdentifier) -> ()) {
-        
-        let application = UIApplication.sharedApplication()
-        print("beginning background task")
-        let bgIdentifier = application.beginBackgroundTaskWithExpirationHandler(nil)
-        
-        task(bgIdentifier)
-    }
 
     // MARK: - Setup
     
