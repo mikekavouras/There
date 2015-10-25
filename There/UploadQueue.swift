@@ -41,14 +41,14 @@ class UploadQueue: UploadDelegate {
                 
                 // If the queue isn't empty, begin processing the next item
                 if !isEmpty {
-                    queue.first!.process()
+                    processNextItem()
                 }
             } else {
                 delegate?.uploadQueueWillProcessUpload(self)
                 
                 // Process the item immediately if it's the only one in the queue
                 if queue.count == 1 {
-                    queue.first!.process()
+                    processNextItem()
                 }
             }
         }
@@ -69,6 +69,17 @@ class UploadQueue: UploadDelegate {
         
         if index != -1 {
             queue.removeAtIndex(index)
+        }
+    }
+    
+    private func processNextItem() {
+        if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+            appDelegate.addFiniteBackgroundTask({ (identifier: UIBackgroundTaskIdentifier) -> () in
+                self.queue.first!.process {
+                    UIApplication.sharedApplication().endBackgroundTask(identifier)
+                    print("finished background task")
+                }
+            })
         }
     }
     

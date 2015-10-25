@@ -23,7 +23,7 @@ class Upload: NSObject {
         self.entry = entry
     }
     
-    func process() {
+    func process(completion: (() -> ())?=nil) {
         delegate?.uploadDidBeginProcessing(self)
         
         let onCompleteHandler: (Bool, NSError?) -> Void = { saved, error in
@@ -32,6 +32,7 @@ class Upload: NSObject {
             } else {
                 self.delegate?.uploadDidFinishProcessing(self)
             }
+            completion?()
         }
         
         if entry.saveLocal {
