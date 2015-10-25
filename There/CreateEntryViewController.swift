@@ -152,25 +152,27 @@ class CreateEntryViewController: UIViewController,
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
+        let finalWidth: CGFloat = 900.0
+        
         if let type = info[UIImagePickerControllerMediaType] as? String {
             if type == "public.image" {
-                if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-                    let imageData = UIImageJPEGRepresentation(image.scale(900 / image.size.width)!, 1.0)
+                if let image = info[UIImagePickerControllerOriginalImage] as? UIImage,
+                    scaledImage = image.scale(finalWidth / image.size.width) {
+                    let imageData = UIImageJPEGRepresentation(scaledImage, 1.0)
                     entry.media = PFFile(data: imageData!, contentType: "image/jpeg")
                     entry.typeMapped = .Image
                     entry.image = image
                 }
             } else if type == "public.movie" {
-                if let file = info[UIImagePickerControllerMediaURL] as? NSURL {
-                    if let videoData = NSData(contentsOfURL: file) {
-                        if let image = file.thumbnailImagePreview() {
-                            let imageData = UIImageJPEGRepresentation(image.scale(900 / image.size.width)!, 1.0)
-                            entry.videoURL = file
-                            entry.posterImage = PFFile(data: imageData!, contentType: "image/jpeg")
-                            entry.media = PFFile(data: videoData, contentType: "video/mp4")
-                            entry.typeMapped = .Video
-                        }
-                    }
+                if let file = info[UIImagePickerControllerMediaURL] as? NSURL,
+                    videoData = NSData(contentsOfURL: file),
+                    image = file.thumbnailImagePreview(),
+                    scaledImage = image.scale(finalWidth / image.size.width) {
+                        let imageData = UIImageJPEGRepresentation(scaledImage, 1.0)
+                        entry.videoURL = file
+                        entry.posterImage = PFFile(data: imageData!, contentType: "image/jpeg")
+                        entry.media = PFFile(data: videoData, contentType: "video/mp4")
+                        entry.typeMapped = .Video
                 }
             }
         }
