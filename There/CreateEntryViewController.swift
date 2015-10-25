@@ -155,8 +155,8 @@ class CreateEntryViewController: UIViewController,
         if let type = info[UIImagePickerControllerMediaType] as? String {
             if type == "public.image" {
                 if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-                    let imageData = UIImageJPEGRepresentation(image, 0.8)!
-                    entry.media = PFFile(data: imageData, contentType: "image/jpeg")
+                    let imageData = UIImageJPEGRepresentation(image.scale(900 / image.size.width)!, 1.0)
+                    entry.media = PFFile(data: imageData!, contentType: "image/jpeg")
                     entry.typeMapped = .Image
                     entry.image = image
                 }
@@ -164,8 +164,9 @@ class CreateEntryViewController: UIViewController,
                 if let file = info[UIImagePickerControllerMediaURL] as? NSURL {
                     if let videoData = NSData(contentsOfURL: file) {
                         if let image = file.thumbnailImagePreview() {
+                            let imageData = UIImageJPEGRepresentation(image.scale(900 / image.size.width)!, 1.0)
                             entry.videoURL = file
-                            entry.posterImage = PFFile(data: UIImagePNGRepresentation(image)!, contentType: "image/jpeg")
+                            entry.posterImage = PFFile(data: imageData!, contentType: "image/jpeg")
                             entry.media = PFFile(data: videoData, contentType: "video/mp4")
                             entry.typeMapped = .Video
                         }

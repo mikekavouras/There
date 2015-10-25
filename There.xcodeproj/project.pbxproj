@@ -13,6 +13,7 @@
 		8D12807A1BBF540200615BEA /* CreateEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1280791BBF540200615BEA /* CreateEntryViewController.swift */; };
 		8D1280841BBF552B00615BEA /* UIViewController+Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1280831BBF552B00615BEA /* UIViewController+Storyboard.swift */; };
 		8D26D7F21BCB0E4000DCD230 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D26D7F11BCB0E4000DCD230 /* VideoPlayer.swift */; };
+		8D39B1831BDD55AE00AFD4A1 /* UIImage+Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D39B1821BDD55AE00AFD4A1 /* UIImage+Transform.swift */; };
 		8D3C07CC1BC7577C0032B5D0 /* NSURL+ImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C07CB1BC7577C0032B5D0 /* NSURL+ImageGenerator.swift */; };
 		8D3C07CE1BC776430032B5D0 /* UIColor+EntryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C07CD1BC776430032B5D0 /* UIColor+EntryType.swift */; };
 		8D40688D1BC5CE5E00A1E698 /* EntryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40688C1BC5CE5E00A1E698 /* EntryDetailViewController.swift */; };
@@ -71,6 +72,7 @@
 		8D1280791BBF540200615BEA /* CreateEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEntryViewController.swift; sourceTree = "<group>"; };
 		8D1280831BBF552B00615BEA /* UIViewController+Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Storyboard.swift"; sourceTree = "<group>"; };
 		8D26D7F11BCB0E4000DCD230 /* VideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
+		8D39B1821BDD55AE00AFD4A1 /* UIImage+Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Transform.swift"; sourceTree = "<group>"; };
 		8D3C07CB1BC7577C0032B5D0 /* NSURL+ImageGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+ImageGenerator.swift"; sourceTree = "<group>"; };
 		8D3C07CD1BC776430032B5D0 /* UIColor+EntryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+EntryType.swift"; sourceTree = "<group>"; };
 		8D40688C1BC5CE5E00A1E698 /* EntryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryDetailViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1280831BBF552B00615BEA /* UIViewController+Storyboard.swift */,
+				8D39B1821BDD55AE00AFD4A1 /* UIImage+Transform.swift */,
 				8D5ED2EC1BC42A9C001BC138 /* UIDevice+Camera.swift */,
 				8D3C07CB1BC7577C0032B5D0 /* NSURL+ImageGenerator.swift */,
 				8D3C07CD1BC776430032B5D0 /* UIColor+EntryType.swift */,
@@ -492,6 +495,7 @@
 				8D5269FA1BD3F20B0000C723 /* ALAssetsLibrary+CustomAlbum.swift in Sources */,
 				8D3C07CE1BC776430032B5D0 /* UIColor+EntryType.swift in Sources */,
 				8D40688D1BC5CE5E00A1E698 /* EntryDetailViewController.swift in Sources */,
+				8D39B1831BDD55AE00AFD4A1 /* UIImage+Transform.swift in Sources */,
 				8D1277E51BC0B73E00E0867D /* LocationManager.swift in Sources */,
 				8D1280841BBF552B00615BEA /* UIViewController+Storyboard.swift in Sources */,
 				8DE6B56F1BC846240049380F /* SettingsTableViewController.swift in Sources */,
