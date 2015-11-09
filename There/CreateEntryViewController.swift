@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MobileCoreServices
 import Parse
 
 class CreateEntryViewController: UIViewController,
@@ -25,9 +26,12 @@ class CreateEntryViewController: UIViewController,
     TypeIFrame960x540:  37579515 bytes (37.58mb)
     TypeIFrame1280x720: 49055343 bytes (49.06mb)
     */
-    let VIDEO_QUALITY: UIImagePickerControllerQualityType = .TypeHigh
+    let VIDEO_QUALITY: UIImagePickerControllerQualityType = .TypeMedium
     
-    let MAX_VIDEO_DURATION: NSTimeInterval = 4
+    let MAX_VIDEO_DURATION: NSTimeInterval = 10
+    
+    let FINAL_IMAGE_WIDTH: CGFloat = 1080.0
+    let FINAL_IMAGE_QUALITY: CGFloat = 0.6
     
     @IBOutlet weak var imageButton: DesignableButton!
     @IBOutlet weak var videoButton: DesignableButton!
@@ -152,23 +156,21 @@ class CreateEntryViewController: UIViewController,
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
-        let finalWidth: CGFloat = 900.0
-        
         if let type = info[UIImagePickerControllerMediaType] as? String {
-            if type == "public.image" {
+            if type == kUTTypeImage as String {
                 if let image = info[UIImagePickerControllerOriginalImage] as? UIImage,
-                    scaledImage = image.scale(finalWidth / image.size.width) {
-                    let imageData = UIImageJPEGRepresentation(scaledImage, 1.0)
+                    scaledImage = image.scale(FINAL_IMAGE_WIDTH / image.size.width) {
+                    let imageData = UIImageJPEGRepresentation(scaledImage, FINAL_IMAGE_QUALITY)
                     entry.media = PFFile(data: imageData!, contentType: "image/jpeg")
                     entry.typeMapped = .Image
                     entry.image = image
                 }
-            } else if type == "public.movie" {
+            } else if type == kUTTypeMovie as String {
                 if let file = info[UIImagePickerControllerMediaURL] as? NSURL,
                     videoData = NSData(contentsOfURL: file),
                     image = file.thumbnailImagePreview(),
-                    scaledImage = image.scale(finalWidth / image.size.width) {
-                        let imageData = UIImageJPEGRepresentation(scaledImage, 1.0)
+                    scaledImage = image.scale(FINAL_IMAGE_WIDTH / image.size.width) {
+                        let imageData = UIImageJPEGRepresentation(scaledImage, FINAL_IMAGE_QUALITY)
                         entry.videoURL = file
                         entry.posterImage = PFFile(data: imageData!, contentType: "image/jpeg")
                         entry.media = PFFile(data: videoData, contentType: "video/mp4")
@@ -217,9 +219,14 @@ class CreateEntryViewController: UIViewController,
         let picker = UIImagePickerController()
         
         if captureMode == .Video {
-            picker.mediaTypes = ["public.movie"]
+            picker.mediaTypes = [kUTTypeMovie as String]
             picker.videoMaximumDuration = MAX_VIDEO_DURATION
             picker.videoQuality = VIDEO_QUALITY
+        } else {
+            picker.mediaTypes = [kUTTypeImage as String]
+            if #available(iOS 9.1, *) {
+//                picker.mediaTypes += [kUTTypeLivePhoto as String]
+            }
         }
         
         picker.delegate = self

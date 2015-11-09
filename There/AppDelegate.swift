@@ -40,8 +40,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Setup
     
     private func setupParse() {
-        registerParseSubclasses()
+        
+        // Enable storing and querying data from Local Datastore.
+        Parse.enableLocalDatastore()
+        
         Parse.setApplicationId(ParseAPI.ApplicationID, clientKey: ParseAPI.ClientKey)
+
+        PFUser.enableAutomaticUser()
+        
+        let defaultACL = PFACL();
+        defaultACL.setPublicReadAccess(true)
+        PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser:true)
+        
+        registerParseSubclasses()
+
     }
     
     private func registerParseSubclasses() {
