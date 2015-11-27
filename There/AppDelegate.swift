@@ -12,7 +12,7 @@ import Parse
 import Bolts
 
 struct ParseAPI {
-    static let ApplicationID = "ParseApplicationId"
+    static let ApplicationID = "ParseApplicationID"
     static let ClientKey = "ParseClientKey"
 }
 
