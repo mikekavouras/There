@@ -100,7 +100,7 @@ class EntryDetailViewController: UIViewController {
     private func setupImage() {
         
         mediaView = PFImageView()
-        mediaView!.contentMode = .ScaleAspectFit
+        mediaView!.contentMode = .ScaleAspectFill
         
         if let media = entry.media {
             mediaView!.file = media

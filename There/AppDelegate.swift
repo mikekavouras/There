@@ -12,8 +12,8 @@ import Parse
 import Bolts
 
 struct ParseAPI {
-    static let ApplicationID = "yhcDXuJR178ADzrgYKjH7YO5FAhTXNKGYwtflJUW"
-    static let ClientKey = "2xgmdMbksrMA7Rj3l2WjU7LtQ3oYZzsy780q9zmO"
+    static let ApplicationID = "ParseApplicationId"
+    static let ClientKey = "ParseClientKey"
 }
 
 struct ShortcutItem {
@@ -40,12 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Setup
     
     private func setupParse() {
+        guard initParseFromPlist() else { exit(0) }
         
-        // Enable storing and querying data from Local Datastore.
-        Parse.enableLocalDatastore()
-        
-        Parse.setApplicationId(ParseAPI.ApplicationID, clientKey: ParseAPI.ClientKey)
-
         PFUser.enableAutomaticUser()
         
         let defaultACL = PFACL();
@@ -53,7 +49,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser:true)
         
         registerParseSubclasses()
-
+    }
+    
+    private func initParseFromPlist() -> Bool {
+        if let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist"),
+            plist = NSDictionary(contentsOfFile: path),
+            applicationId = plist[ParseAPI.ApplicationID] as? String,
+            clientKey = plist[ParseAPI.ClientKey] as? String {
+                
+                Parse.enableLocalDatastore()
+                Parse.setApplicationId(applicationId, clientKey: clientKey)
+                return true
+        }
+        return false
     }
     
     private func registerParseSubclasses() {
