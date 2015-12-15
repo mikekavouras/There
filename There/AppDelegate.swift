@@ -49,10 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard initParseFromPlist() else { exit(0) }
         
         PFUser.enableAutomaticUser()
-        
-        let defaultACL = PFACL();
-        defaultACL.setPublicReadAccess(true)
-        PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser:true)
+        PFACL().setReadAccess(true, forUser: PFUser.currentUser())
         
 //        initParseTwitter()
         
