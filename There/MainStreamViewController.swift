@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import ParseTwitterUtils
 
 class MainStreamViewController: UIViewController,
     UICollectionViewDelegateFlowLayout,
@@ -41,6 +42,18 @@ class MainStreamViewController: UIViewController,
         
         // questionable
         UploadQueue.sharedQueue.delegate = self
+        
+//        if let user = PFUser.currentUser() {
+//            if PFAnonymousUtils.isLinkedWithUser(user) {
+//                showTwitterLogin()
+//            }
+//        }
+    }
+    
+    private func showTwitterLogin() {
+        PFTwitterUtils.logInWithBlock({ (user: PFUser?, error: NSError?) -> Void in
+            print(user)
+        })
     }
     
     
@@ -50,6 +63,7 @@ class MainStreamViewController: UIViewController,
     private func setup() {
         
         setupCollectionView()
+        
         if #available(iOS 9.0, *) {
             if traitCollection.forceTouchCapability == .Available {
                 registerForPreviewingWithDelegate(self, sourceView: collectionView)
@@ -100,14 +114,11 @@ class MainStreamViewController: UIViewController,
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if let viewController = segue.destinationViewController as? EntryDetailViewController {
-            if let data = data {
-                if let indexPaths = collectionView.indexPathsForSelectedItems(),
-                    indexPath = indexPaths.first {
-                        viewController.entry = data[indexPath.row]
-                }
-                
-            }
+        if let viewController = segue.destinationViewController as? EntryDetailViewController,
+            indexPaths = collectionView.indexPathsForSelectedItems(),
+            indexPath = indexPaths.first,
+            data = data {
+                viewController.entry = data[indexPath.row]
         }
     }
     
@@ -116,9 +127,9 @@ class MainStreamViewController: UIViewController,
     // MARK: View controller previewing
     
     func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
+        
         if let viewController = viewControllerToCommit as? EntryDetailViewController {
-            viewController.peeking = false
-            presentViewController(viewControllerToCommit, animated: true, completion: nil)
+            navigationController?.pushViewController(viewController, animated: true)
         }
     }
     
@@ -127,31 +138,27 @@ class MainStreamViewController: UIViewController,
         if #available(iOS 9.0, *) {
             let collectionView = previewingContext.sourceView as! UICollectionView
             let indexPath = collectionView.indexPathForItemAtPoint(location)
-            if let indexPath = indexPath {
-                if let cell = collectionView.cellForItemAtIndexPath(indexPath) {
+            if let indexPath = indexPath,
+                cell = collectionView.cellForItemAtIndexPath(indexPath),
+                viewController = storyboard?.instantiateViewControllerWithIdentifier("EntryDetailControllerIdentifier") as?EntryDetailViewController,
+                data = data {
+                    
                     previewingContext.sourceRect = cell.frame
-                    if let data = data {
-                        let viewController = storyboard?.instantiateViewControllerWithIdentifier("EntryDetailControllerIdentifier") as! EntryDetailViewController
-                        let entry = data[indexPath.row]
-                        viewController.entry = entry
-                        viewController.peeking = true
-                        return viewController
-                    }
-                }
+                    let entry = data[indexPath.row]
+                    viewController.entry = entry
+                    return viewController
             }
         }
         
-
-        return UIViewController()
+        return nil
     }
-    
-    
+
     // MARK: -
     // MARK: Collection view layout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        let width = view.frame.size.width / NUMBER_OF_COLUMNS
+        let width = view.frame.size.width / NUMBER_OF_COLUMNS - 0.5
         return CGSizeMake(width, width)
     }
     
@@ -162,12 +169,12 @@ class MainStreamViewController: UIViewController,
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
         
-        return 0.0
+        return 0.5
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         
-        return 0.0
+        return 0.5
     }
     
     

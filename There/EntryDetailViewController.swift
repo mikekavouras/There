@@ -16,15 +16,7 @@ class EntryDetailViewController: UIViewController {
     var entry: Entry!
     var mediaView: PFImageView?
     var videoPlayer: AVPlayer?
-    var peeking = false {
-        didSet {
-            if toolbar != nil {
-                toolbar.hidden = peeking
-            }
-        }
-    }
     
-    @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var mediaContainerView: UIView!
@@ -69,16 +61,6 @@ class EntryDetailViewController: UIViewController {
         mediaContainerView.clipsToBounds = true
         
         setupMedia()
-        setupNavigationItem()
-        
-        if peeking {
-            toolbar.hidden = true
-        }
-    }
-    
-    private func setupNavigationItem() {
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismiss")
     }
     
     private func setupMedia() {
@@ -163,13 +145,5 @@ class EntryDetailViewController: UIViewController {
         super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
     }
     
-    
-    // MARK: -
-    // MARK: User actions
-    
-    @IBAction func doneButtonTapped(sender: AnyObject) {
-        
-        dismissViewControllerAnimated(true, completion: nil)
-    }
     
 }

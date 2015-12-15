@@ -225,7 +225,7 @@ class CreateEntryViewController: UIViewController,
         } else {
             picker.mediaTypes = [kUTTypeImage as String]
             if #available(iOS 9.1, *) {
-//                picker.mediaTypes += [kUTTypeLivePhoto as String]
+                picker.mediaTypes += [kUTTypeLivePhoto as String]
             }
         }
         

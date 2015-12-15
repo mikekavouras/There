@@ -10,10 +10,16 @@ import UIKit
 import CoreData
 import Parse
 import Bolts
+import ParseTwitterUtils
 
 struct ParseAPI {
     static let ApplicationID = "ParseApplicationID"
     static let ClientKey = "ParseClientKey"
+}
+
+struct Twitter {
+    static let ConsumerSecret = "TwitterConsumerSecret"
+    static let ConsumerKey = "TwitterConsumerKey"
 }
 
 struct ShortcutItem {
@@ -48,27 +54,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         defaultACL.setPublicReadAccess(true)
         PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser:true)
         
+//        initParseTwitter()
+        
         registerParseSubclasses()
     }
     
     private func initParseFromPlist() -> Bool {
-        if let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist"),
+        
+        guard let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist"),
             plist = NSDictionary(contentsOfFile: path),
             applicationId = plist[ParseAPI.ApplicationID] as? String,
-            clientKey = plist[ParseAPI.ClientKey] as? String {
-                
-                Parse.enableLocalDatastore()
-                Parse.setApplicationId(applicationId, clientKey: clientKey)
-                return true
+            clientKey = plist[ParseAPI.ClientKey] as? String  else {
+                return false
         }
-        return false
+                
+        Parse.enableLocalDatastore()
+        Parse.setApplicationId(applicationId, clientKey: clientKey)
+        return true
+    }
+    
+    private func initParseTwitter() {
+        
+      guard let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist"),
+        plist = NSDictionary(contentsOfFile: path),
+        secret = plist[Twitter.ConsumerSecret] as? String,
+        key = plist[Twitter.ConsumerKey] as? String else {
+            return
+        }
+            
+        PFTwitterUtils.initializeWithConsumerKey(key, consumerSecret: secret)
     }
     
     private func registerParseSubclasses() {
+        
         Entry.registerSubclass()
     }
     
     private func setupApplicationShortcuts() {
+        
         if #available(iOS 9.0, *) {
 
             let icon = UIApplicationShortcutIcon(templateImageName: ImageAsset.NewDraft)
